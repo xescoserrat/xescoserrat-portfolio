@@ -16,10 +16,11 @@ The art direction, crop ratio, lazy loading and layout remain unchanged. Export 
 
 This is a static export for Cloudflare Pages:
 
+- Node version: `24`
 - Build command: `npm run build`
 - Build output directory: `out`
 - Production branch: `main`
 
 Cloudflare Pages will produce preview deployments for pull requests.
 
-The site also includes static `sitemap.xml` and `robots.txt` routes for production indexing.
+The site also includes static `sitemap.xml` and `robots.txt` routes for production indexing, plus Cloudflare Pages security and cache headers in `public/_headers`.
