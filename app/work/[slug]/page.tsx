@@ -21,6 +21,7 @@ export default async function ProjectPage({ params }: Props) {
   const project = getProject(slug);
   if (!project) notFound();
   const projectIndex = projects.findIndex(({ slug: currentSlug }) => currentSlug === slug);
+  const previousProject = projects[(projectIndex - 1 + projects.length) % projects.length];
   const nextProject = projects[(projectIndex + 1) % projects.length];
 
   return (
@@ -62,9 +63,14 @@ export default async function ProjectPage({ params }: Props) {
       </section>
       <section className="case-outro">
         <a className="source-link" href={project.behanceUrl} target="_blank" rel="noreferrer">View original Behance project <span aria-hidden="true">↗</span></a>
-        <Link className="next-project" href={`/work/${nextProject.slug}`}>
-          <span className="eyebrow">Next chapter</span><strong>{nextProject.title}</strong><span aria-hidden="true">↗</span>
-        </Link>
+        <nav className="case-project-nav" aria-label="Project navigation">
+          <Link className="next-project previous-project" href={`/work/${previousProject.slug}`}>
+            <span className="eyebrow">Previous chapter</span><strong>{previousProject.title}</strong><span aria-hidden="true">←</span>
+          </Link>
+          <Link className="next-project" href={`/work/${nextProject.slug}`}>
+            <span className="eyebrow">Next chapter</span><strong>{nextProject.title}</strong><span aria-hidden="true">↗</span>
+          </Link>
+        </nav>
       </section>
       </main>
     </>
