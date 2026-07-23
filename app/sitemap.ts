@@ -3,7 +3,7 @@ import { projects } from "../content/projects";
 
 export const dynamic = "force-static";
 
-const siteUrl = "https://xescoserrat-portfolio.pages.dev";
+const siteUrl = "https://xescoserrat-portfolio.xescoserrat.workers.dev";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

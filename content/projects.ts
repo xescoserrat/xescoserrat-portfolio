@@ -1,10 +1,16 @@
-export type MediaSource = "behance-temporary" | "local-original";
+export type MediaSource = "behance-temporary" | "local-original" | "official-brand-source";
+
+export type MediaProvenance = {
+  pageUrl: string;
+  imageUrl: string;
+};
 
 export type MediaAsset = {
   src: string;
   alt: string;
   aspect: "portrait" | "landscape" | "square";
   source: MediaSource;
+  provenance?: MediaProvenance;
 };
 
 export type Project = {
@@ -30,6 +36,14 @@ const behance = (src: string, alt: string, aspect: MediaAsset["aspect"]): MediaA
   source: "behance-temporary",
 });
 
+const cachedBehance = (src: string, alt: string, aspect: MediaAsset["aspect"], provenance: MediaProvenance): MediaAsset => ({
+  src,
+  alt,
+  aspect,
+  source: "behance-temporary",
+  provenance,
+});
+
 export const localOriginal = (src: string, alt: string, aspect: MediaAsset["aspect"]): MediaAsset => ({
   src,
   alt,
@@ -41,13 +55,13 @@ export const projects: Project[] = [
   {
     slug: "koroshi-ss-aw",
     title: "Koroshi SS26–27 + AW26–27",
-    discipline: "Language / Form",
+    discipline: "Fashion Design / Menswear",
     year: "2026",
-    role: "Fashion graphics · Menswear · Seasonal direction",
-    summary: "A graphic language made to travel across a season, from the first mark to the final garment.",
-    introduction: "Koroshi brings together seasonal development and graphic decision-making at product level. The work is treated as a living system: direct, wearable and consistent across changing silhouettes.",
-    process: "The visual direction starts with energy and placement, then tests how each graphic can hold its character through different garments, scales and materials.",
-    capabilities: ["Menswear", "Fashion graphics", "Art direction"],
+    role: "Fashion Designer · Menswear · Fashion graphics",
+    summary: "Menswear collection development that moves from concept, graphics and fabric through construction and production.",
+    introduction: "At Koroshi, the collection is developed as one connected system: silhouette, fabric, colour, placement and graphic language are resolved together so every garment holds its character in wear.",
+    process: "The work moves from concept and seasonal research through graphics, fabrics, colour, garment construction, fittings, measurements and production follow-up.",
+    capabilities: ["Fashion design", "Menswear design", "Collection development", "Garment development", "Fashion graphics", "Fittings and production follow-up"],
     behanceUrl: "https://www.behance.net/gallery/241860497/Koroshi-SS26-27-AW26-27",
     media: [
       // Exported from the verified jungle_repeat_seamless_fullcolor_master.png source artwork.
@@ -59,13 +73,13 @@ export const projects: Project[] = [
   {
     slug: "man-designs-desigual",
     title: "Man Designs Desigual",
-    discipline: "Language / Form",
+    discipline: "Fashion Graphics / Menswear",
     year: "2024",
-    role: "Fashion graphics · Menswear · Print",
-    summary: "Menswear graphics with character—built around attitude, placement and a strong read from distance.",
-    introduction: "This body of work explores how a graphic can become part of a menswear silhouette rather than simply sit on it. The emphasis is on immediacy, graphic confidence and product relevance.",
-    process: "Each proposition considers the garment as a frame: where the eye lands first, how colour carries energy, and how the image changes in movement.",
-    capabilities: ["Menswear", "Print", "Graphic design"],
+    role: "Fashion Graphic Designer · Menswear · Textile print",
+    summary: "Menswear graphics and textile prints developed for product, placement and a strong read in wear.",
+    introduction: "At Desigual, graphic development is considered as part of the garment: a balance of print, typography, placement and colour that supports the silhouette rather than sitting separately from it.",
+    process: "Each proposition considers the garment as a frame—how the eye lands, how colour carries energy and how labels, patches, typography and graphic detail behave in movement.",
+    capabilities: ["Menswear", "Fashion graphics", "Textile prints", "Typography", "Labels, patches and branding"],
     behanceUrl: "https://www.behance.net/gallery/212354207/Man-Designs-Desigual",
     media: [
       behance("https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/5af428212354207.696a0eed750d8.jpg", "Desigual menswear fashion graphic", "portrait"),
@@ -76,13 +90,13 @@ export const projects: Project[] = [
   {
     slug: "woman-designs-desigual",
     title: "Woman Designs Desigual",
-    discipline: "Language / Form",
+    discipline: "Fashion Graphics / Womenswear",
     year: "2024",
-    role: "Fashion graphics · Womenswear · Colour",
-    summary: "A womenswear graphic vocabulary that balances movement, colour and a distinctive visual pulse.",
-    introduction: "For womenswear, the graphic system becomes a way to amplify mood. Colour, line and composition work together to make every garment feel energetic without losing clarity.",
-    process: "The work moves between full looks and close detail, testing how visual language behaves across the body and through a collection.",
-    capabilities: ["Womenswear", "Fashion graphics", "Colour"],
+    role: "Fashion Graphic Designer · Womenswear · Colour",
+    summary: "Womenswear graphics and print direction balancing movement, colour and a distinctive visual pulse.",
+    introduction: "For womenswear at Desigual, graphic language amplifies mood through colour, line and composition while remaining responsive to the garment, the body and the collection.",
+    process: "The work moves between full looks and close detail, testing how print, placement and colour behave across the body and through a collection.",
+    capabilities: ["Womenswear", "Fashion graphics", "Textile prints", "Colour systems", "Collection development"],
     behanceUrl: "https://www.behance.net/gallery/212364163/Woman-Designs-Desigual",
     media: [
       behance("https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/f14245212364163.697b33b9bb01a.jpg", "Desigual womenswear fashion graphic", "portrait"),
@@ -95,11 +109,11 @@ export const projects: Project[] = [
     title: "Fashion Prints",
     discipline: "Surface",
     year: "2021",
-    role: "Textile print · Illustration · Colour systems",
-    summary: "Print as atmosphere: a set of visual worlds designed to be read at garment scale.",
+    role: "Textile prints · All-over patterns · Colour systems",
+    summary: "Print as atmosphere: visual worlds designed for garment scale, repeat and movement.",
     introduction: "Fashion Prints is a study in surface and feeling. Each composition treats colour, motif and density as tools for creating a distinct emotional register.",
     process: "The image is resolved in two dimensions first, then considered for rhythm, wearability and the way it comes alive on a moving body.",
-    capabilities: ["Textile print", "Illustration", "Colour systems"],
+    capabilities: ["Textile prints", "All-over patterns", "Illustration", "Colour systems"],
     behanceUrl: "https://www.behance.net/gallery/110926415/Fashion-Prints",
     media: [
       behance("https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/5b26c5110926415.697b373536e5f.png", "Fashion print illustration", "portrait"),
@@ -112,11 +126,11 @@ export const projects: Project[] = [
     title: "Rapport Fashion Prints",
     discipline: "Surface",
     year: "2021",
-    role: "Repeat · Textile print · Pattern",
+    role: "Repeat · Textile prints · All-over patterns",
     summary: "Repeat patterns that work as a complete image from afar and a considered construction up close.",
     introduction: "Rapport Fashion Prints investigates repetition as a creative device. The work looks for the point where a motif can multiply without losing its personality.",
     process: "Pattern, scale and rhythm are balanced to make a print feel continuous, intentional and adaptable across fashion applications.",
-    capabilities: ["Repeat", "Textile print", "Pattern"],
+    capabilities: ["Repeat", "Textile prints", "All-over patterns", "Pattern"],
     behanceUrl: "https://www.behance.net/gallery/110930891/Rapport-fashion-prints",
     media: [
       behance("https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/af0d68110930891.5ff836a900f4f.png", "Rapport fashion print pattern", "landscape"),
@@ -128,14 +142,17 @@ export const projects: Project[] = [
     title: "Flasheros the Brand",
     discipline: "Direction",
     year: "2026",
-    role: "Brand identity · Typography · Creative thinking",
+    role: "Brand identity · Typography · Art direction",
     summary: "A brand-world exercise where identity becomes tone, typography and a way of taking up space.",
     introduction: "Flasheros the Brand expands the practice beyond the garment into identity. It considers how a visual voice can introduce a brand before a single product is explained.",
     process: "The project is framed around recognition: making a system with enough contrast, attitude and typographic clarity to feel immediate and ownable.",
-    capabilities: ["Brand identity", "Typography", "Creative thinking"],
+    capabilities: ["Brand identity", "Typography", "Labels and branding", "Art direction and visual identity"],
     behanceUrl: "https://www.behance.net/gallery/241866335/Flasheros-the-brand",
     media: [
-      behance("https://a5.behance.net/82385ac841c8486d1cbd6dc7e522c2f906828477/img/covers/max_808_webp-blocked.png", "Flasheros the Brand project cover", "landscape"),
+      cachedBehance("/images/projects/flasheros-behance-cover-01.jpg", "Flasheros the Brand Behance cover", "landscape", {
+        pageUrl: "https://www.behance.net/gallery/241866335/Flasheros-the-brand",
+        imageUrl: "https://mir-s3-cdn-cf.behance.net/projects/808/ab1732241866335.Y3JvcCwyMTM1LDE2NzAsMzYsMA.jpg",
+      }),
     ],
   },
 ];

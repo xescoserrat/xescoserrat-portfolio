@@ -4,7 +4,7 @@ A static, editorial Next.js portfolio for Xesco Serrat.
 
 ## Media replacement workflow
 
-Every project is represented in `content/projects.ts`. Each media item is explicitly marked `behance-temporary` or `local-original`. All current project media is temporary Behance media until an exact source-file match has been verified.
+Every project is represented in `content/projects.ts`. Each media item is explicitly marked `behance-temporary`, `local-original`, or `official-brand-source`, with source-page and source-image provenance where applicable. A Behance-temporary asset may be cached locally for reliable delivery, but remains labelled by its original source until an exact original or official brand source is verified.
 
 Place approved original files in `public/images/projects/`, then replace the relevant `behance(...)` entry with `localOriginal(...)`, for example:
 

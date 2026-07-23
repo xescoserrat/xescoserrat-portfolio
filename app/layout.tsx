@@ -2,23 +2,23 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Xesco Serrat — Fashion Graphic Designer",
+  title: "Francesc Serrat — Fashion Designer & Senior Fashion Graphic Designer",
   description:
-    "The creative practice of Xesco Serrat, Senior Fashion Graphic Designer in Barcelona.",
-  metadataBase: new URL("https://xescoserrat-portfolio.pages.dev"),
+    "Fashion Designer and Senior Fashion Graphic Designer in Barcelona, combining garment development, menswear, fashion graphics, textile prints and visual direction.",
+  metadataBase: new URL("https://xescoserrat-portfolio.xescoserrat.workers.dev"),
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Xesco Serrat — Fashion Graphic Designer",
-    description: "The creative practice of Xesco Serrat, Senior Fashion Graphic Designer in Barcelona.",
+    title: "Francesc Serrat — Fashion Designer & Senior Fashion Graphic Designer",
+    description: "Fashion Designer and Senior Fashion Graphic Designer in Barcelona, combining garment development, menswear, fashion graphics, textile prints and visual direction.",
     url: "/",
-    siteName: "Xesco Serrat",
+    siteName: "Francesc Serrat",
     locale: "en_GB",
     type: "website",
   },
   twitter: {
     card: "summary",
-    title: "Xesco Serrat — Fashion Graphic Designer",
-    description: "The creative practice of Xesco Serrat, Senior Fashion Graphic Designer in Barcelona.",
+    title: "Francesc Serrat — Fashion Designer & Senior Fashion Graphic Designer",
+    description: "Fashion Designer and Senior Fashion Graphic Designer in Barcelona, combining garment development, menswear, fashion graphics, textile prints and visual direction.",
   },
 };
 

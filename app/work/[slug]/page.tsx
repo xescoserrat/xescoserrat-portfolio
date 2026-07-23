@@ -14,7 +14,7 @@ export function generateMetadata({ params }: Props) {
     const project = getProject(slug);
     if (!project) return {};
 
-    const title = `${project.title} — Xesco Serrat`;
+    const title = `${project.title} — Francesc Serrat, Fashion Designer & Senior Fashion Graphic Designer`;
     return {
       title,
       description: project.summary,

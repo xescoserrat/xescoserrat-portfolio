@@ -9,10 +9,10 @@ const visualStream = projects.flatMap((project) => project.media.map((media, ima
 })));
 
 const archiveDisciplines = [
-  ["Fashion Graphics & Typography", "Graphic languages built for product, placement and recognition.", ["koroshi-ss-aw", "man-designs-desigual", "woman-designs-desigual"]],
-  ["Surface / Textile Prints", "Print, repeat, colour and texture as visual atmosphere.", ["fashion-prints", "rapport-fashion-prints"]],
-  ["Form / Fashion", "Menswear and womenswear considered through the body, silhouette and movement.", ["koroshi-ss-aw", "man-designs-desigual", "woman-designs-desigual"]],
-  ["Direction / Identity and Art Direction", "A point of view that moves from a first graphic decision to a complete visual world.", ["flasheros"]],
+  ["Fashion Graphics & Typography", "Graphic languages, typography, labels and patches built for product, placement and recognition.", ["koroshi-ss-aw", "man-designs-desigual", "woman-designs-desigual"]],
+  ["Surface / Textile Prints", "Textile prints, all-over patterns, repeat, colour and texture as visual atmosphere.", ["fashion-prints", "rapport-fashion-prints"]],
+  ["Form / Fashion", "Fashion design, menswear, garment development and collection thinking through the body, silhouette and movement.", ["koroshi-ss-aw", "man-designs-desigual", "woman-designs-desigual"]],
+  ["Direction / Identity and Art Direction", "A point of view that moves from brand identity and labels to a complete visual world.", ["flasheros"]],
 ] as const;
 
 export default function Home() {
@@ -32,8 +32,8 @@ export default function Home() {
 
         <section className="archive-intro" aria-labelledby="intro-title">
           <p className="eyebrow">Francesc Serrat / Barcelona</p>
-          <h1 id="intro-title">Senior Fashion<br />Graphic Designer</h1>
-          <p>Fashion Graphics · Textile Prints · Fashion · Identity · Art Direction</p>
+          <h1 id="intro-title"><span className="intro-name">Francesc Serrat</span>Fashion Designer &amp;<br />Senior Fashion Graphic Designer</h1>
+          <p>Fashion design, garment development, graphics, textile prints and visual direction.</p>
         </section>
 
         <section className="visual-stream" id="work" aria-labelledby="work-title">
@@ -99,8 +99,15 @@ export default function Home() {
 
         <section className="about" aria-labelledby="about-title">
           <p className="eyebrow">Francesc Serrat / Xesco Serrat</p>
-          <h2 id="about-title">Senior Fashion Graphic Designer.<br />Barcelona, Spain.</h2>
-          <p>From textile print to art direction, I create visual worlds for fashion brands that want to be recognised—not merely seen.</p>
+          <h2 id="about-title">Fashion Designer &amp;<br />Senior Fashion Graphic Designer.</h2>
+          <div className="about-copy">
+            <p>I am a Barcelona-based Fashion Designer and Senior Fashion Graphic Designer with more than 14 years of experience in the fashion industry.</p>
+            <p>My professional background combines fashion graphics, textile prints, typography and brand identity with garment design, collection development, fittings, measurements, technical specifications and production follow-up.</p>
+            <p>I currently work as a Fashion Designer at Koroshi, developing menswear collections from the initial concept through graphics, fabrics, colour, garment construction and final production. Previously, I developed extensive experience as a Fashion Graphic Designer at Desigual across menswear, womenswear, kidswear and accessories.</p>
+          </div>
+          <ul className="profile-capabilities" aria-label="Professional capabilities">
+            <li>Fashion design</li><li>Menswear design</li><li>Garment and collection development</li><li>Fashion graphics and textile prints</li><li>Typography, labels, patches and branding</li><li>Tech packs, fittings and production follow-up</li><li>Art direction and visual identity</li>
+          </ul>
         </section>
 
         <footer id="contact" className="contact" aria-label="Contact">
