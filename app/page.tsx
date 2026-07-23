@@ -2,20 +2,45 @@ import Link from "next/link";
 import { MediaFrame } from "../components/media-frame";
 import { SiteHeader } from "../components/site-header";
 import { portfolioWorlds } from "../content/portfolio-worlds";
-import { projects } from "../content/projects";
+import { mediaInventory } from "../content/media-inventory";
 
-const visualStream = projects.flatMap((project) => project.media.map((media, imageIndex) => ({
-  project,
-  media,
-  imageIndex,
-})));
+const visualStream = mediaInventory.filter((item) => (
+  item.publicationStatus === "published" && ["Koroshi", "Desigual", "Flasheros"].includes(item.brand)
+));
 
 const archiveDisciplines = [
-  ["Fashion Graphics & Typography", "Graphic languages, typography, labels and patches built for product, placement and recognition.", ["koroshi-ss-aw", "man-designs-desigual", "woman-designs-desigual"]],
-  ["Surface / Textile Prints", "Textile prints, all-over patterns, repeat, colour and texture as visual atmosphere.", ["fashion-prints", "rapport-fashion-prints"]],
-  ["Form / Fashion", "Fashion design, menswear, garment development and collection thinking through the body, silhouette and movement.", ["koroshi-ss-aw", "man-designs-desigual", "woman-designs-desigual"]],
-  ["Photography / Personal Project", "A personal space for photography, visual experimentation, art direction and an early brand universe.", ["flasheros"]],
-] as const;
+  {
+    title: "Fashion / Product Development",
+    description: "Menswear design, product thinking, technical development and the detail that carries a collection into production.",
+    links: [
+      { label: "Koroshi / T-Shirts & Sleeveless", href: "/work/koroshi/t-shirts-sleeveless" },
+      { label: "Koroshi / Knitwear", href: "/work/koroshi/knitwear" },
+      { label: "Koroshi / Product Development", href: "/work/koroshi/product-development" },
+    ],
+  },
+  {
+    title: "Fashion Graphics / Textile Prints",
+    description: "Graphic languages, typography, all-over print and product application built for placement and recognition.",
+    links: [
+      { label: "Koroshi / Fashion Graphics", href: "/work/koroshi/fashion-graphics" },
+      { label: "Desigual / Man", href: "/work/desigual/man" },
+      { label: "Desigual / Woman", href: "/work/desigual/woman" },
+    ],
+  },
+  {
+    title: "Photography / Personal Project",
+    description: "A personal space for photography, visual experimentation, art direction and an early future-brand universe.",
+    links: [{ label: "Flasheros", href: "/work/flasheros" }],
+  },
+  {
+    title: "Independent Print Archive",
+    description: "Two preserved print studies kept separate until their original brand or division can be verified with confidence.",
+    links: [
+      { label: "Fashion Prints", href: "/work/independent-print-archive" },
+      { label: "Rapport Fashion Prints", href: "/work/independent-print-archive" },
+    ],
+  },
+];
 
 export default function Home() {
   return (
@@ -38,7 +63,7 @@ export default function Home() {
             {portfolioWorlds.map((world, index) => (
               <article className={`world-card world-card--${index + 1}`} key={world.slug}>
                 <Link className="world-card-image" href={world.href} aria-label={`Explore ${world.title}`}>
-                  <MediaFrame media={world.cover} title={world.title} priority={index === 0} />
+                  <MediaFrame media={world.cover} title={world.title} />
                   <span className="world-card-open" aria-hidden="true">Explore ↗</span>
                 </Link>
                 <div className="world-card-copy">
@@ -58,15 +83,15 @@ export default function Home() {
             <h2 id="work-title">An archive of images,<br />systems and garments.</h2>
           </div>
           <div className="stream-grid">
-            {visualStream.map(({ project, media, imageIndex }, index) => (
-              <article className={`stream-item stream-item--${(index % 9) + 1}`} key={`${project.slug}-${media.src}`}>
-                <Link className="stream-image-link" href={`/work/${project.slug}`} aria-label={`View ${project.title} case study`}>
-                  <MediaFrame media={media} title={project.title} priority={index < 2} />
-                  <span className="stream-view" aria-hidden="true">View project ↗</span>
+            {visualStream.map((item, index) => (
+              <article className={`stream-item stream-item--${(index % 9) + 1}`} key={item.id}>
+                <Link className="stream-image-link" href={item.proposedRoute} aria-label={`Explore ${item.brand}: ${item.category}`}>
+                  <MediaFrame media={item.media} title={`${item.brand}: ${item.category}`} />
+                  <span className="stream-view" aria-hidden="true">Explore ↗</span>
                 </Link>
                 <div className="stream-caption">
-                  <p>{project.title}</p>
-                  <span>{project.discipline} · {project.year} · {String(imageIndex + 1).padStart(2, "0")}</span>
+                  <p>{item.brand} / {item.category}</p>
+                  <span>{item.creativeDiscipline} · {item.season} · {item.id}</span>
                 </div>
               </article>
             ))}
@@ -79,15 +104,12 @@ export default function Home() {
             <h2 id="archive-title">One practice.<br />Different entry points.</h2>
           </div>
           <div className="archive-list">
-            {archiveDisciplines.map(([title, description, slugs], index) => (
-              <article className="archive-discipline" key={title}>
+            {archiveDisciplines.map((discipline, index) => (
+              <article className="archive-discipline" key={discipline.title}>
                 <p className="section-index">( 0{index + 1} )</p>
-                <div><h3>{title}</h3><p>{description}</p></div>
+                <div><h3>{discipline.title}</h3><p>{discipline.description}</p></div>
                 <ul>
-                  {slugs.map((slug) => {
-                    const project = projects.find((item) => item.slug === slug);
-                    return project ? <li key={`${title}-${slug}`}><Link href={`/work/${slug}`}>{project.title} <span aria-hidden="true">↗</span></Link></li> : null;
-                  })}
+                  {discipline.links.map((link) => <li key={link.href}><Link href={link.href}>{link.label} <span aria-hidden="true">↗</span></Link></li>)}
                 </ul>
               </article>
             ))}
@@ -117,13 +139,13 @@ export default function Home() {
           <p className="eyebrow">Francesc Serrat / Xesco Serrat</p>
           <h2 id="about-title">Fashion Designer &amp;<br />Senior Fashion Graphic Designer.</h2>
           <div className="about-copy">
-            <p>Francesc Serrat is a Barcelona-based Fashion Designer and Senior Fashion Graphic Designer with more than 14 years of experience in the fashion industry.</p>
+            <p>Francesc Serrat is a Barcelona-based Fashion Designer and Senior Fashion Graphic Designer with approximately 16 years of experience in the fashion industry.</p>
             <p>His background combines fashion graphics, textile prints, typography and visual identity with menswear design, garment and collection development, fittings, measurements, technical specifications, tech packs and production follow-up.</p>
-            <p>He currently works as a Fashion Designer at Koroshi, developing menswear collections from initial concept through graphics, fabrics, colour, garment construction and final production. Previously, he developed extensive experience as a Fashion Graphic Designer at Desigual across menswear, womenswear, kidswear and accessories.</p>
+            <p>After more than 14 years as a Fashion Graphic Designer at Desigual across menswear, womenswear, kidswear and accessories, he joined Koroshi. There, he has worked for almost two years across three menswear seasons, developing collections from initial concept through graphics, fabric, colour, garment construction and final production.</p>
             <p>His profile connects creative direction, fashion graphics and product development—making him suited to both Fashion Designer and Senior Fashion Graphic Designer roles.</p>
           </div>
           <ul className="profile-capabilities" aria-label="Professional capabilities">
-            <li>14+ years in fashion</li><li>Fashion and menswear design</li><li>Garment and collection development</li><li>Fashion graphics, textile prints and all-over patterns</li><li>Typography, labels, patches and branding</li><li>Technical specifications and tech packs</li><li>Fittings, measurements and production follow-up</li><li>Art direction and visual identity</li>
+            <li>≈16 years in fashion</li><li>Fashion and menswear design</li><li>Garment and collection development</li><li>Fashion graphics, textile prints and all-over patterns</li><li>Typography, labels, patches and branding</li><li>Technical specifications and tech packs</li><li>Fittings, measurements and production follow-up</li><li>Art direction and visual identity</li>
           </ul>
         </section>
 

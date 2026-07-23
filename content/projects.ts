@@ -1,8 +1,10 @@
 export type MediaSource = "behance-temporary" | "local-original" | "official-brand-source";
 
 export type MediaProvenance = {
-  pageUrl: string;
-  imageUrl: string;
+  pageUrl?: string;
+  imageUrl?: string;
+  sourcePath?: string;
+  note?: string;
 };
 
 export type MediaAsset = {
@@ -44,11 +46,20 @@ const cachedBehance = (src: string, alt: string, aspect: MediaAsset["aspect"], p
   provenance,
 });
 
-export const localOriginal = (src: string, alt: string, aspect: MediaAsset["aspect"]): MediaAsset => ({
+export const localOriginal = (src: string, alt: string, aspect: MediaAsset["aspect"], provenance?: MediaProvenance): MediaAsset => ({
   src,
   alt,
   aspect,
   source: "local-original",
+  provenance,
+});
+
+export const officialBrand = (src: string, alt: string, aspect: MediaAsset["aspect"], provenance: MediaProvenance): MediaAsset => ({
+  src,
+  alt,
+  aspect,
+  source: "official-brand-source",
+  provenance,
 });
 
 export const projects: Project[] = [
@@ -58,8 +69,8 @@ export const projects: Project[] = [
     discipline: "Fashion Design / Menswear",
     year: "2026",
     role: "Fashion Designer · Menswear · Fashion graphics",
-    summary: "Menswear collection development that moves from concept, graphics and fabric through construction and production.",
-    introduction: "At Koroshi, the collection is developed as one connected system: silhouette, fabric, colour, placement and graphic language are resolved together so every garment holds its character in wear.",
+    summary: "Current menswear work developed across three seasons, moving from concept, graphics and fabric through construction and production.",
+    introduction: "At Koroshi, the collection is developed as one connected system: silhouette, fabric, colour, placement and graphic language are resolved together so every garment holds its character in wear. Across almost two years and three seasons, the work connects fashion design with fashion graphics and product development.",
     process: "The work moves from concept and seasonal research through graphics, fabrics, colour, garment construction, fittings, measurements and production follow-up.",
     capabilities: ["Fashion design", "Menswear design", "Collection development", "Garment development", "Fashion graphics", "Fittings and production follow-up"],
     behanceUrl: "https://www.behance.net/gallery/241860497/Koroshi-SS26-27-AW26-27",
@@ -73,6 +84,61 @@ export const projects: Project[] = [
       behance("https://mir-s3-cdn-cf.behance.net/project_modules/hd/3c8643241860497.6960f64b897f4.jpg", "Koroshi graphic application on garment", "portrait"),
       behance("https://mir-s3-cdn-cf.behance.net/project_modules/hd/a2ad78241860497.6960f64b85e85.jpg", "Koroshi print and silhouette study", "portrait"),
       behance("https://mir-s3-cdn-cf.behance.net/project_modules/hd/c7d634241860497.6960f64b9db97.png", "Koroshi seasonal artwork detail", "portrait"),
+      // Verified against the original SS26 technical files by exact product code (2611MC00).
+      officialBrand("/images/projects/koroshi-2611mc00-front.webp", "Koroshi 2611MC00 white T-shirt, front view", "portrait", {
+        pageUrl: "https://koroshishop.com/en/products/mens-2-pack-basic-cotton-short-sleeve-t-shirts-2611mc00",
+        imageUrl: "https://koroshishop.com/cdn/shop/files/2611MC00_0000001_10.jpg?v=1772637794",
+        sourcePath: "/Volumes/TRABAJO HD/MUESTRARIO XESCO SS26/2611MC00/2611MC00 SKETCH.pdf",
+      }),
+      officialBrand("/images/projects/koroshi-2611mc00-profile.webp", "Koroshi 2611MC00 white T-shirt, profile view", "portrait", {
+        pageUrl: "https://koroshishop.com/en/products/mens-2-pack-basic-cotton-short-sleeve-t-shirts-2611mc00",
+        imageUrl: "https://koroshishop.com/cdn/shop/files/2611MC00_0000001_2.jpg?v=1772637794",
+        sourcePath: "/Volumes/TRABAJO HD/MUESTRARIO XESCO SS26/2611MC00/2611MC00 SKETCH.pdf",
+      }),
+      // Verified against the original 2611MS47 artwork and technical specification files.
+      officialBrand("/images/projects/koroshi-2611ms47-white-front.webp", "Koroshi 2611MS47 all-over print sleeveless T-shirt, white colourway", "portrait", {
+        pageUrl: "https://koroshishop.com/en/products/mens-boxing-all-over-print-t-shirt-2611ms47",
+        imageUrl: "https://koroshishop.com/cdn/shop/files/2611MS47_000001_8.jpg?v=1772722336",
+        sourcePath: "/Volumes/TRABAJO HD/MUESTRARIO XESCO SS26/2611MS47/2611MS47 ARTWORKS.pdf",
+      }),
+      officialBrand("/images/projects/koroshi-2611ms47-white-profile.webp", "Koroshi 2611MS47 all-over print sleeveless T-shirt, side view", "portrait", {
+        pageUrl: "https://koroshishop.com/en/products/mens-boxing-all-over-print-t-shirt-2611ms47",
+        imageUrl: "https://koroshishop.com/cdn/shop/files/2611MS47_000001_2.jpg?v=1772722336",
+        sourcePath: "/Volumes/TRABAJO HD/MUESTRARIO XESCO SS26/2611MS47/2611MS47 ARTWORKS.pdf",
+      }),
+      officialBrand("/images/projects/koroshi-2611ms47-yellow-front.webp", "Koroshi 2611MS47 all-over print sleeveless T-shirt, yellow colourway", "portrait", {
+        pageUrl: "https://koroshishop.com/en/products/mens-boxing-all-over-print-t-shirt-2611ms47",
+        imageUrl: "https://koroshishop.com/cdn/shop/files/2611MS47_000027_8.jpg?v=1772722336",
+        sourcePath: "/Volumes/TRABAJO HD/MUESTRARIO XESCO SS26/2611MS47/2611MS47 ARTWORKS.pdf",
+      }),
+      localOriginal("/images/projects/koroshi-2611ms47-artwork-spec.webp", "Koroshi 2611MS47 artwork and print placement specification", "portrait", {
+        sourcePath: "/Volumes/TRABAJO HD/MUESTRARIO XESCO SS26/2611MS47/2611MS47 ARTWORKS.pdf",
+        note: "Optimized export from the approved original technical artwork PDF.",
+      }),
+      localOriginal("/images/projects/koroshi-2611mc00-tech-sheet.webp", "Koroshi 2611MC00 technical T-shirt development sheet", "landscape", {
+        sourcePath: "/Volumes/TRABAJO HD/MUESTRARIO XESCO SS26/2611MC00/2611MC00 SKETCH.pdf",
+        note: "Optimized export from the approved original technical development PDF.",
+      }),
+      localOriginal("/images/projects/koroshi-2621tr35-tech-sheet.webp", "Koroshi 2621TR35 knitwear technical development sheet", "landscape", {
+        sourcePath: "/Volumes/TRABAJO HD/MUESTRARIO AW 26-27/2621TR35/2621TR35 SKETCH.pdf",
+        note: "Optimized export from the approved original technical development PDF.",
+      }),
+      localOriginal("/images/projects/koroshi-2621tr35-knitwear-overview.webp", "Koroshi 2621TR35 knitwear sample overview", "portrait", {
+        sourcePath: "/Volumes/TRABAJO HD/MUESTRARIO AW 26-27/2621TR35/IMG_7787.JPG",
+      }),
+      localOriginal("/images/projects/koroshi-2621tr35-knitwear-neck.webp", "Koroshi 2621TR35 knitwear sample neckline and label detail", "portrait", {
+        sourcePath: "/Volumes/TRABAJO HD/MUESTRARIO AW 26-27/2621TR35/IMG_7788.JPG",
+      }),
+      localOriginal("/images/projects/koroshi-2621tr35-knitwear-cuff.webp", "Koroshi 2621TR35 knitwear sample cuff embroidery detail", "landscape", {
+        sourcePath: "/Volumes/TRABAJO HD/MUESTRARIO AW 26-27/2621TR35/IMG_7789.JPG",
+      }),
+      localOriginal("/images/projects/koroshi-2621ja53-tech-sheet.webp", "Koroshi 2621JA53 outerwear technical development sheet", "landscape", {
+        sourcePath: "/Volumes/TRABAJO HD/MUESTRARIO AW 26-27/2621JA53/2621JA53 SKETCH.pdf",
+        note: "Optimized export from the approved original technical development PDF.",
+      }),
+      localOriginal("/images/projects/koroshi-2621ja53-lab-dips.webp", "Koroshi 2621JA53 outerwear lab-dip review", "portrait", {
+        sourcePath: "/Volumes/TRABAJO HD/MUESTRARIO AW 26-27/2621JA53/IMG_6764.JPG",
+      }),
     ],
   },
   {

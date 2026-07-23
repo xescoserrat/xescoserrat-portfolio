@@ -1,5 +1,6 @@
 import type { MediaAsset, Project } from "./projects";
 import { projects } from "./projects";
+import { mediaByIds } from "./media-inventory";
 
 export type PortfolioCategory = {
   slug: string;
@@ -34,76 +35,119 @@ function project(slug: string) {
   return current;
 }
 
+function category(
+  slug: string,
+  title: string,
+  description: string,
+  sourceProject: Project,
+  mediaIds: string[],
+): PortfolioCategory {
+  const media = mediaByIds(mediaIds);
+  const cover = media[0];
+  if (!cover) throw new Error(`${title} needs at least one published image`);
+  return { slug, title, description, cover, media, sourceProject };
+}
+
 const koroshiProject = project("koroshi-ss-aw");
 const desigualManProject = project("man-designs-desigual");
 const desigualWomanProject = project("woman-designs-desigual");
 const flasherosProject = project("flasheros");
 
-const koroshiCategories: PortfolioCategory[] = [
-  {
-    slug: "menswear-collection",
-    title: "Menswear Collection",
-    description: "Seasonal menswear considered through silhouette, colour, garment graphics and product development.",
-    cover: koroshiProject.media[2],
-    media: [koroshiProject.media[2], koroshiProject.media[3], koroshiProject.media[4], koroshiProject.media[5], koroshiProject.media[6]],
-    sourceProject: koroshiProject,
-  },
-  {
-    slug: "textile-prints",
-    title: "Textile Prints & Fashion Graphics",
-    description: "Repeat, placement and artwork developed as part of the garment’s visual language.",
-    cover: koroshiProject.media[0],
-    media: [koroshiProject.media[0], koroshiProject.media[1], koroshiProject.media[5], koroshiProject.media[7]],
-    sourceProject: koroshiProject,
-  },
+export const koroshiCategories: PortfolioCategory[] = [
+  category(
+    "t-shirts-sleeveless",
+    "T-Shirts & Sleeveless",
+    "Menswear T-shirts and sleeveless jersey developed through garment proportion, graphic placement and all-over print.",
+    koroshiProject,
+    ["K-09", "K-10", "K-11", "K-12", "K-13", "K-03", "K-04", "K-05", "K-06", "K-07"],
+  ),
+  category(
+    "knitwear",
+    "Knitwear",
+    "A focused AW26–27 knitwear study, from technical development to sample, label and embroidery detail.",
+    koroshiProject,
+    ["K-17", "K-16", "K-18", "K-19"],
+  ),
+  category(
+    "fashion-graphics",
+    "Fashion Graphics & Textile Prints",
+    "Repeat, placement and artwork developed as a garment’s visual language rather than an afterthought.",
+    koroshiProject,
+    ["K-01", "K-02", "K-08", "K-14"],
+  ),
+  category(
+    "product-development",
+    "Design Process / Product Development",
+    "Technical specification, fabric and colour review, construction thinking and production-facing development.",
+    koroshiProject,
+    ["K-15", "K-16", "K-20", "K-21", "K-14"],
+  ),
 ];
 
 const desigualManDivision: PortfolioDivision = {
   slug: "man",
   title: "Man",
-  description: "Menswear graphic systems, textile prints, typography and product applications.",
-  cover: desigualManProject.media[0],
-  categories: [{
-    slug: "fashion-graphics",
-    title: "Fashion Graphics & Textile Prints",
-    description: "Graphic languages, placement, typography and textile print developed for menswear product.",
-    cover: desigualManProject.media[0],
-    media: desigualManProject.media,
-    sourceProject: desigualManProject,
-  }],
+  description: "Menswear fashion graphics, typography, textile print and product application, kept in their original product context.",
+  cover: mediaByIds(["DM-01"])[0],
+  categories: [
+    category(
+      "sweatshirts-knitwear",
+      "Sweatshirts & Knitwear",
+      "Graphic systems, print and typography developed for men’s sweatshirts and knitwear.",
+      desigualManProject,
+      ["DM-01", "DM-02", "DM-07"],
+    ),
+    category(
+      "shirts-outerwear",
+      "Shirts & Outerwear",
+      "Print placement, graphic language and product application across men’s shirts and outerwear.",
+      desigualManProject,
+      ["DM-03", "DM-04", "DM-06", "DM-08"],
+    ),
+  ],
 };
 
 const desigualWomanDivision: PortfolioDivision = {
   slug: "woman",
   title: "Woman",
-  description: "Womenswear graphics, colour and print direction responsive to movement and the body.",
-  cover: desigualWomanProject.media[0],
-  categories: [{
-    slug: "fashion-graphics",
-    title: "Fashion Graphics & Textile Prints",
-    description: "Colour, composition, print placement and graphic identity for womenswear product.",
-    cover: desigualWomanProject.media[0],
-    media: desigualWomanProject.media,
-    sourceProject: desigualWomanProject,
-  }],
+  description: "Womenswear fashion graphics, colour and print direction responsive to movement, silhouette and the body.",
+  cover: mediaByIds(["DW-01"])[0],
+  categories: [
+    category(
+      "dresses",
+      "Dresses",
+      "Womenswear print, colour and graphic direction considered across the dress as a complete moving surface.",
+      desigualWomanProject,
+      ["DW-01", "DW-03", "DW-04", "DW-06"],
+    ),
+    category(
+      "blouses-tops",
+      "Blouses & Tops",
+      "Textile print, placement and product application developed for womenswear blouses and tops.",
+      desigualWomanProject,
+      ["DW-02", "DW-05", "DW-07"],
+    ),
+  ],
 };
+
+export const desigualDivisions = [desigualManDivision, desigualWomanDivision];
 
 export const portfolioWorlds: PortfolioWorld[] = [
   {
     slug: "koroshi",
     title: "Koroshi",
-    description: "Current work connecting menswear design, garment development, fashion graphics, textile prints, branding and production.",
-    cover: koroshiProject.media[2],
+    description: "Current menswear work across three seasons: fashion design, garment development, fashion graphics, textile prints and production follow-up.",
+    cover: mediaByIds(["K-11"])[0],
     href: "/work/koroshi",
     categories: koroshiCategories,
   },
   {
     slug: "desigual",
     title: "Desigual",
-    description: "Fashion Graphic Design across menswear and womenswear: graphics, textile prints, typography, product application and visual identity.",
-    cover: desigualManProject.media[0],
+    description: "More than 14 years of Fashion Graphic Design across menswear and womenswear: graphics, textile prints, typography, product application and visual identity.",
+    cover: desigualManDivision.cover,
     href: "/work/desigual",
-    divisions: [desigualManDivision, desigualWomanDivision],
+    divisions: desigualDivisions,
   },
   {
     slug: "flasheros",
@@ -116,12 +160,13 @@ export const portfolioWorlds: PortfolioWorld[] = [
 
 export const portfolioWorldPaths = [
   "/work/koroshi",
-  ...koroshiCategories.map((category) => `/work/koroshi/${category.slug}`),
+  ...koroshiCategories.map((item) => `/work/koroshi/${item.slug}`),
   "/work/desigual",
-  ...[desigualManDivision, desigualWomanDivision].flatMap((division) => [
+  ...desigualDivisions.flatMap((division) => [
     `/work/desigual/${division.slug}`,
-    ...division.categories.map((category) => `/work/desigual/${division.slug}/${category.slug}`),
+    ...division.categories.map((item) => `/work/desigual/${division.slug}/${item.slug}`),
   ]),
+  "/work/independent-print-archive",
 ];
 
 export function getWorld(slug: string) {
@@ -129,13 +174,13 @@ export function getWorld(slug: string) {
 }
 
 export function getKoroshiCategory(slug: string) {
-  return koroshiCategories.find((category) => category.slug === slug);
+  return koroshiCategories.find((item) => item.slug === slug);
 }
 
 export function getDesigualDivision(slug: string) {
-  return [desigualManDivision, desigualWomanDivision].find((division) => division.slug === slug);
+  return desigualDivisions.find((item) => item.slug === slug);
 }
 
 export function getDesigualCategory(divisionSlug: string, categorySlug: string) {
-  return getDesigualDivision(divisionSlug)?.categories.find((category) => category.slug === categorySlug);
+  return getDesigualDivision(divisionSlug)?.categories.find((item) => item.slug === categorySlug);
 }

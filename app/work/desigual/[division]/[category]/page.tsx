@@ -4,12 +4,12 @@ import { notFound } from "next/navigation";
 import { Breadcrumbs } from "../../../../../components/breadcrumbs";
 import { MediaGallery } from "../../../../../components/media-gallery";
 import { SiteHeader } from "../../../../../components/site-header";
-import { getDesigualCategory, getDesigualDivision } from "../../../../../content/portfolio-worlds";
+import { desigualDivisions, getDesigualCategory, getDesigualDivision } from "../../../../../content/portfolio-worlds";
 
 type Props = { params: Promise<{ division: string; category: string }> };
 
 export function generateStaticParams() {
-  return ["man", "woman"].map((division) => ({ division, category: "fashion-graphics" }));
+  return desigualDivisions.flatMap((division) => division.categories.map((category) => ({ division: division.slug, category: category.slug })));
 }
 
 export function generateMetadata({ params }: Props) {
@@ -28,6 +28,9 @@ export default async function DesigualCategoryPage({ params }: Props) {
   const category = getDesigualCategory(divisionSlug, categorySlug);
   if (!division || !category) notFound();
   const remainingMedia = category.media.filter((media) => media.src !== category.cover.src);
+  const categoryIndex = division.categories.findIndex((item) => item.slug === category.slug);
+  const previousCategory = division.categories[(categoryIndex - 1 + division.categories.length) % division.categories.length];
+  const nextCategory = division.categories[(categoryIndex + 1) % division.categories.length];
 
   return (
     <>
@@ -42,10 +45,14 @@ export default async function DesigualCategoryPage({ params }: Props) {
           <MediaGallery className="world-hero-media" media={[category.cover]} title={`Desigual ${division.title}: ${category.title}`} priority />
         </section>
         {remainingMedia.length ? <MediaGallery className="category-gallery" media={remainingMedia} title={`Desigual ${division.title}: ${category.title}`} /> : null}
-        <section className="category-return">
+        <nav className="category-return" aria-label={`Desigual ${division.title} category navigation`}>
+          <Link href="/">← Home</Link>
+          <Link href="/work/desigual">← Desigual</Link>
           <Link href={`/work/desigual/${division.slug}`}>← All Desigual {division.title} work</Link>
+          <Link href={`/work/desigual/${division.slug}/${previousCategory.slug}`}>Previous: {previousCategory.title}</Link>
+          <Link href={`/work/desigual/${division.slug}/${nextCategory.slug}`}>Next: {nextCategory.title} →</Link>
           <Link href={`/work/${category.sourceProject.slug}`}>View full original case study ↗</Link>
-        </section>
+        </nav>
       </main>
     </>
   );

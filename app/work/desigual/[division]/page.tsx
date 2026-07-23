@@ -4,12 +4,12 @@ import { Breadcrumbs } from "../../../../components/breadcrumbs";
 import { CategoryCard } from "../../../../components/category-card";
 import { MediaGallery } from "../../../../components/media-gallery";
 import { SiteHeader } from "../../../../components/site-header";
-import { getDesigualDivision } from "../../../../content/portfolio-worlds";
+import { desigualDivisions, getDesigualDivision } from "../../../../content/portfolio-worlds";
 
 type Props = { params: Promise<{ division: string }> };
 
 export function generateStaticParams() {
-  return ["man", "woman"].map((division) => ({ division }));
+  return desigualDivisions.map((division) => ({ division: division.slug }));
 }
 
 export function generateMetadata({ params }: Props) {

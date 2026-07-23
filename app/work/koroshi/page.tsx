@@ -41,13 +41,13 @@ export default function KoroshiPage() {
           <div>
             <p className="eyebrow">Fashion Designer &amp; Senior Fashion Graphic Designer</p>
             <h2 id="koroshi-context-title">A collection is resolved as one connected system.</h2>
-            <p className="lede">Menswear is developed from initial concept through graphics, fabric, colour, garment construction, fittings and final production. Explore the work through its two verified visual entry points.</p>
+            <p className="lede">Across almost two years and three menswear seasons, the work moves from initial concept through graphics, fabric, colour, garment construction, fittings and final production. Browse the verified work by product and development context.</p>
           </div>
         </section>
         <section className="category-overview" aria-labelledby="koroshi-categories-title">
           <div className="category-heading">
             <p className="eyebrow">Koroshi / Browse by discipline</p>
-            <h2 id="koroshi-categories-title">Collection and surface.</h2>
+            <h2 id="koroshi-categories-title">Product, surface and process.</h2>
           </div>
           <div className="category-grid">
             {categories.map((category) => (

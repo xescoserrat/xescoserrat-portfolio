@@ -4,12 +4,12 @@ import { notFound } from "next/navigation";
 import { Breadcrumbs } from "../../../../components/breadcrumbs";
 import { MediaGallery } from "../../../../components/media-gallery";
 import { SiteHeader } from "../../../../components/site-header";
-import { getKoroshiCategory } from "../../../../content/portfolio-worlds";
+import { getKoroshiCategory, koroshiCategories } from "../../../../content/portfolio-worlds";
 
 type Props = { params: Promise<{ category: string }> };
 
 export function generateStaticParams() {
-  return ["menswear-collection", "textile-prints"].map((category) => ({ category }));
+  return koroshiCategories.map((category) => ({ category: category.slug }));
 }
 
 export function generateMetadata({ params }: Props) {
@@ -26,6 +26,9 @@ export default async function KoroshiCategoryPage({ params }: Props) {
   const category = getKoroshiCategory(slug);
   if (!category) notFound();
   const remainingMedia = category.media.filter((media) => media.src !== category.cover.src);
+  const categoryIndex = koroshiCategories.findIndex((item) => item.slug === category.slug);
+  const previousCategory = koroshiCategories[(categoryIndex - 1 + koroshiCategories.length) % koroshiCategories.length];
+  const nextCategory = koroshiCategories[(categoryIndex + 1) % koroshiCategories.length];
 
   return (
     <>
@@ -40,10 +43,13 @@ export default async function KoroshiCategoryPage({ params }: Props) {
           <MediaGallery className="world-hero-media" media={[category.cover]} title={category.title} priority />
         </section>
         {remainingMedia.length ? <MediaGallery className="category-gallery" media={remainingMedia} title={category.title} /> : null}
-        <section className="category-return">
+        <nav className="category-return" aria-label="Koroshi category navigation">
+          <Link href="/">← Home</Link>
           <Link href="/work/koroshi">← All Koroshi disciplines</Link>
+          <Link href={`/work/koroshi/${previousCategory.slug}`}>Previous: {previousCategory.title}</Link>
+          <Link href={`/work/koroshi/${nextCategory.slug}`}>Next: {nextCategory.title} →</Link>
           <Link href={`/work/${category.sourceProject.slug}`}>View full original case study ↗</Link>
-        </section>
+        </nav>
       </main>
     </>
   );

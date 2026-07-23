@@ -7,6 +7,42 @@ import { getProject, projects } from "../../../content/projects";
 
 type Props = { params: Promise<{ slug: string }> };
 
+function legacyContext(slug: string, title: string) {
+  if (slug === "koroshi-ss-aw") {
+    return {
+      breadcrumbs: [{ label: "Home", href: "/" }, { label: "Koroshi", href: "/work/koroshi" }, { label: title }],
+      parentHref: "/work/koroshi",
+      parentLabel: "Explore Koroshi",
+    };
+  }
+  if (slug === "man-designs-desigual") {
+    return {
+      breadcrumbs: [{ label: "Home", href: "/" }, { label: "Desigual", href: "/work/desigual" }, { label: "Man", href: "/work/desigual/man" }, { label: title }],
+      parentHref: "/work/desigual/man",
+      parentLabel: "Explore Desigual Man",
+    };
+  }
+  if (slug === "woman-designs-desigual") {
+    return {
+      breadcrumbs: [{ label: "Home", href: "/" }, { label: "Desigual", href: "/work/desigual" }, { label: "Woman", href: "/work/desigual/woman" }, { label: title }],
+      parentHref: "/work/desigual/woman",
+      parentLabel: "Explore Desigual Woman",
+    };
+  }
+  if (slug === "fashion-prints" || slug === "rapport-fashion-prints") {
+    return {
+      breadcrumbs: [{ label: "Home", href: "/" }, { label: "Archive", href: "/#archive" }, { label: "Independent Print Archive", href: "/work/independent-print-archive" }, { label: title }],
+      parentHref: "/work/independent-print-archive",
+      parentLabel: "Explore Independent Print Archive",
+    };
+  }
+  return {
+    breadcrumbs: [{ label: "Home", href: "/" }, { label: "Flasheros" }],
+    parentHref: "/",
+    parentLabel: "Return home",
+  };
+}
+
 export function generateStaticParams() {
   return projects.map(({ slug }) => ({ slug }));
 }
@@ -40,9 +76,7 @@ export default async function ProjectPage({ params }: Props) {
   const { slug } = await params;
   const project = getProject(slug);
   if (!project) notFound();
-  const projectIndex = projects.findIndex(({ slug: currentSlug }) => currentSlug === slug);
-  const previousProject = projects[(projectIndex - 1 + projects.length) % projects.length];
-  const nextProject = projects[(projectIndex + 1) % projects.length];
+  const context = legacyContext(slug, project.title);
 
   return (
     <>
@@ -50,7 +84,7 @@ export default async function ProjectPage({ params }: Props) {
       <SiteHeader />
       <main id="main-content">
       <section className="case-hero" id="case-content" tabIndex={-1} aria-labelledby="case-title">
-        <Breadcrumbs items={slug === "flasheros" ? [{ label: "Home", href: "/" }, { label: "Flasheros" }] : [{ label: "Home", href: "/" }, { label: "Archive", href: "/#archive" }, { label: project.title }]} />
+        <Breadcrumbs items={context.breadcrumbs} />
         <p className="eyebrow">{project.discipline} · {project.year}</p>
         <h1 id="case-title">{project.title}</h1>
         <p className="case-summary">{project.summary}</p>
@@ -78,12 +112,9 @@ export default async function ProjectPage({ params }: Props) {
       </section>
       <section className="case-outro">
         <a className="source-link" href={project.behanceUrl} target="_blank" rel="noreferrer">View original Behance project <span aria-hidden="true">↗</span></a>
-        <nav className="case-project-nav" aria-label="Project navigation">
-          <Link className="next-project previous-project" href={`/work/${previousProject.slug}`}>
-            <span className="eyebrow">Previous chapter</span><strong>{previousProject.title}</strong><span aria-hidden="true">←</span>
-          </Link>
-          <Link className="next-project" href={`/work/${nextProject.slug}`}>
-            <span className="eyebrow">Next chapter</span><strong>{nextProject.title}</strong><span aria-hidden="true">↗</span>
+        <nav className="case-project-nav" aria-label="Case-study navigation">
+          <Link className="next-project" href={context.parentHref}>
+            <span className="eyebrow">Return to context</span><strong>{context.parentLabel}</strong><span aria-hidden="true">↗</span>
           </Link>
         </nav>
       </section>

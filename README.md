@@ -27,7 +27,7 @@ This is a static export for Cloudflare Pages. Configure a Git-integrated Pages p
    - Root directory: leave blank (the portfolio is at the repository root)
 4. Add the environment variable `NODE_VERSION` with value `24`.
 5. Select **Save and Deploy**. Cloudflare installs dependencies, creates the `out/` static export, and publishes it to the project’s `*.pages.dev` URL.
-6. After deployment, verify `/`, all six `/work/<slug>/` routes, `/sitemap.xml`, and `/robots.txt`. Connect a custom domain in the Pages project only after this check passes. If a custom domain is connected, update the production URL consistently in `app/layout.tsx`, `app/sitemap.ts`, and `app/robots.ts` before the next deploy so canonical and indexing URLs remain correct.
+6. After deployment, verify `/`, the Koroshi and Desigual hierarchy, `/work/independent-print-archive/`, the six retained `/work/<slug>/` compatibility routes, `/sitemap.xml`, and `/robots.txt`. Connect a custom domain in the Pages project only after this check passes. If a custom domain is connected, update the production URL consistently in `app/layout.tsx`, `app/sitemap.ts`, and `app/robots.ts` before the next deploy so canonical and indexing URLs remain correct.
 
 Cloudflare Pages will produce preview deployments for pull requests and deploy updates from `main` automatically. The [Cloudflare static Next.js guide](https://developers.cloudflare.com/pages/framework-guides/nextjs/deploy-a-static-nextjs-site/) confirms `out` as the static-export output directory.
 

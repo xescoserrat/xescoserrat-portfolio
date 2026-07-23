@@ -4,12 +4,12 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Francesc Serrat — Fashion Designer & Senior Fashion Graphic Designer",
   description:
-    "Fashion Designer and Senior Fashion Graphic Designer in Barcelona, combining garment development, menswear, fashion graphics, textile prints and visual direction.",
+    "Barcelona-based Fashion Designer and Senior Fashion Graphic Designer with approximately 16 years in fashion, combining menswear, garment development, fashion graphics, textile prints and visual direction.",
   metadataBase: new URL("https://xescoserrat-portfolio.xescoserrat.workers.dev"),
   alternates: { canonical: "/" },
   openGraph: {
     title: "Francesc Serrat — Fashion Designer & Senior Fashion Graphic Designer",
-    description: "Fashion Designer and Senior Fashion Graphic Designer in Barcelona, combining garment development, menswear, fashion graphics, textile prints and visual direction.",
+    description: "Barcelona-based Fashion Designer and Senior Fashion Graphic Designer with approximately 16 years in fashion, combining menswear, garment development, fashion graphics, textile prints and visual direction.",
     url: "/",
     siteName: "Francesc Serrat",
     locale: "en_GB",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary",
     title: "Francesc Serrat — Fashion Designer & Senior Fashion Graphic Designer",
-    description: "Fashion Designer and Senior Fashion Graphic Designer in Barcelona, combining garment development, menswear, fashion graphics, textile prints and visual direction.",
+    description: "Barcelona-based Fashion Designer and Senior Fashion Graphic Designer with approximately 16 years in fashion, combining menswear, garment development, fashion graphics, textile prints and visual direction.",
   },
 };
 

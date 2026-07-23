@@ -41,7 +41,7 @@ export default function DesigualPage() {
           <div>
             <p className="eyebrow">Man / Woman</p>
             <h2 id="desigual-context-title">Graphic identity developed for the garment.</h2>
-            <p className="lede">Explore menswear and womenswear separately. Each path keeps product, typography, textile print and colour in the context in which it was developed.</p>
+            <p className="lede">After more than 14 years as a Fashion Graphic Designer at Desigual, the work is kept in its original menswear and womenswear context—where typography, textile print, colour and product application were developed.</p>
           </div>
         </section>
         <section className="category-overview" aria-labelledby="desigual-divisions-title">
