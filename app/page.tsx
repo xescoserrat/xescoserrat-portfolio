@@ -129,7 +129,7 @@ export default function Home() {
 
         <footer id="contact" className="contact" aria-label="Contact">
           <p className="eyebrow">Let’s make the next thing matter</p>
-          <a href="mailto:hello@xescoserrat.com">hello@xescoserrat.com</a>
+          <a href="mailto:xescoserrat@gmail.com">xescoserrat@gmail.com</a>
           <div><span>© 2026 Xesco Serrat</span><a href="https://www.behance.net/xescoserrat">Behance</a><a href="https://www.instagram.com/xescoserrat">Instagram</a></div>
         </footer>
       </main>
