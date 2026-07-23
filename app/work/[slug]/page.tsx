@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Breadcrumbs } from "../../../components/breadcrumbs";
 import { MediaGallery } from "../../../components/media-gallery";
 import { SiteHeader } from "../../../components/site-header";
 import { getProject, projects } from "../../../content/projects";
@@ -49,6 +50,7 @@ export default async function ProjectPage({ params }: Props) {
       <SiteHeader />
       <main id="main-content">
       <section className="case-hero" id="case-content" tabIndex={-1} aria-labelledby="case-title">
+        <Breadcrumbs items={slug === "flasheros" ? [{ label: "Home", href: "/" }, { label: "Flasheros" }] : [{ label: "Home", href: "/" }, { label: "Archive", href: "/#archive" }, { label: project.title }]} />
         <p className="eyebrow">{project.discipline} · {project.year}</p>
         <h1 id="case-title">{project.title}</h1>
         <p className="case-summary">{project.summary}</p>

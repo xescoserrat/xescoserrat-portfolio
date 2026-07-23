@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { MediaFrame } from "../components/media-frame";
 import { SiteHeader } from "../components/site-header";
+import { portfolioWorlds } from "../content/portfolio-worlds";
 import { projects } from "../content/projects";
 
 const visualStream = projects.flatMap((project) => project.media.map((media, imageIndex) => ({
@@ -26,6 +27,29 @@ export default function Home() {
           <p className="eyebrow">Francesc Serrat / Barcelona</p>
           <h1 id="intro-title"><span className="intro-name">Francesc Serrat</span>Fashion Designer &amp;<br />Senior Fashion Graphic Designer</h1>
           <p>Fashion design, garment development, graphics, textile prints and visual direction.</p>
+        </section>
+
+        <section className="portfolio-worlds" aria-labelledby="worlds-title">
+          <div className="worlds-heading">
+            <p className="eyebrow">Portfolio / Three worlds</p>
+            <h2 id="worlds-title">Start with the context.<br />Then go deeper.</h2>
+          </div>
+          <div className="worlds-grid">
+            {portfolioWorlds.map((world, index) => (
+              <article className={`world-card world-card--${index + 1}`} key={world.slug}>
+                <Link className="world-card-image" href={world.href} aria-label={`Explore ${world.title}`}>
+                  <MediaFrame media={world.cover} title={world.title} priority={index === 0} />
+                  <span className="world-card-open" aria-hidden="true">Explore ↗</span>
+                </Link>
+                <div className="world-card-copy">
+                  <p className="eyebrow">( 0{index + 1} )</p>
+                  <h3><Link href={world.href}>{world.title}</Link></h3>
+                  <p>{world.description}</p>
+                  <Link className="world-card-link" href={world.href}>Explore {world.title} <span aria-hidden="true">↗</span></Link>
+                </div>
+              </article>
+            ))}
+          </div>
         </section>
 
         <section className="visual-stream" id="work" aria-labelledby="work-title">
