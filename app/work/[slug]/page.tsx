@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MediaGallery } from "../../../components/media-gallery";
+import { SiteHeader } from "../../../components/site-header";
 import { getProject, projects } from "../../../content/projects";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -45,14 +46,8 @@ export default async function ProjectPage({ params }: Props) {
   return (
     <>
       <a className="skip-link" href="#case-content">Skip to content</a>
+      <SiteHeader />
       <main id="main-content">
-      <header className="case-header">
-        <Link className="wordmark" href="/" aria-label="Xesco Serrat, home">XS</Link>
-        <nav className="case-nav" aria-label="Case study navigation">
-          <Link href="/#work">All chapters</Link>
-          <Link href="/#contact">Contact</Link>
-        </nav>
-      </header>
       <section className="case-hero" id="case-content" tabIndex={-1} aria-labelledby="case-title">
         <p className="eyebrow">{project.discipline} · {project.year}</p>
         <h1 id="case-title">{project.title}</h1>

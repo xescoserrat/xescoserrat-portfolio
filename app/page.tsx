@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { MediaFrame } from "../components/media-frame";
+import { SiteHeader } from "../components/site-header";
 import { projects } from "../content/projects";
 
 const visualStream = projects.flatMap((project) => project.media.map((media, imageIndex) => ({
@@ -12,24 +13,15 @@ const archiveDisciplines = [
   ["Fashion Graphics & Typography", "Graphic languages, typography, labels and patches built for product, placement and recognition.", ["koroshi-ss-aw", "man-designs-desigual", "woman-designs-desigual"]],
   ["Surface / Textile Prints", "Textile prints, all-over patterns, repeat, colour and texture as visual atmosphere.", ["fashion-prints", "rapport-fashion-prints"]],
   ["Form / Fashion", "Fashion design, menswear, garment development and collection thinking through the body, silhouette and movement.", ["koroshi-ss-aw", "man-designs-desigual", "woman-designs-desigual"]],
-  ["Direction / Identity and Art Direction", "A point of view that moves from brand identity and labels to a complete visual world.", ["flasheros"]],
+  ["Photography / Personal Project", "A personal space for photography, visual experimentation, art direction and an early brand universe.", ["flasheros"]],
 ] as const;
 
 export default function Home() {
   return (
     <>
       <a className="skip-link" href="#main-content">Skip to content</a>
+      <SiteHeader />
       <main id="main-content" tabIndex={-1}>
-        <header className="site-header site-header--archive" id="top">
-          <a href="#top" className="wordmark" aria-label="Xesco Serrat, home">XS</a>
-          <nav className="site-nav" aria-label="Primary navigation">
-            <a href="#work">Selected work</a>
-            <a href="#archive">Archive</a>
-            <a href="#process">Process</a>
-            <a className="header-link" href="#contact">Contact</a>
-          </nav>
-        </header>
-
         <section className="archive-intro" aria-labelledby="intro-title">
           <p className="eyebrow">Francesc Serrat / Barcelona</p>
           <h1 id="intro-title"><span className="intro-name">Francesc Serrat</span>Fashion Designer &amp;<br />Senior Fashion Graphic Designer</h1>
@@ -97,16 +89,17 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="about" aria-labelledby="about-title">
+        <section className="about" id="about" aria-labelledby="about-title">
           <p className="eyebrow">Francesc Serrat / Xesco Serrat</p>
           <h2 id="about-title">Fashion Designer &amp;<br />Senior Fashion Graphic Designer.</h2>
           <div className="about-copy">
-            <p>I am a Barcelona-based Fashion Designer and Senior Fashion Graphic Designer with more than 14 years of experience in the fashion industry.</p>
-            <p>My professional background combines fashion graphics, textile prints, typography and brand identity with garment design, collection development, fittings, measurements, technical specifications and production follow-up.</p>
-            <p>I currently work as a Fashion Designer at Koroshi, developing menswear collections from the initial concept through graphics, fabrics, colour, garment construction and final production. Previously, I developed extensive experience as a Fashion Graphic Designer at Desigual across menswear, womenswear, kidswear and accessories.</p>
+            <p>Francesc Serrat is a Barcelona-based Fashion Designer and Senior Fashion Graphic Designer with more than 14 years of experience in the fashion industry.</p>
+            <p>His background combines fashion graphics, textile prints, typography and visual identity with menswear design, garment and collection development, fittings, measurements, technical specifications, tech packs and production follow-up.</p>
+            <p>He currently works as a Fashion Designer at Koroshi, developing menswear collections from initial concept through graphics, fabrics, colour, garment construction and final production. Previously, he developed extensive experience as a Fashion Graphic Designer at Desigual across menswear, womenswear, kidswear and accessories.</p>
+            <p>His profile connects creative direction, fashion graphics and product development—making him suited to both Fashion Designer and Senior Fashion Graphic Designer roles.</p>
           </div>
           <ul className="profile-capabilities" aria-label="Professional capabilities">
-            <li>Fashion design</li><li>Menswear design</li><li>Garment and collection development</li><li>Fashion graphics and textile prints</li><li>Typography, labels, patches and branding</li><li>Tech packs, fittings and production follow-up</li><li>Art direction and visual identity</li>
+            <li>14+ years in fashion</li><li>Fashion and menswear design</li><li>Garment and collection development</li><li>Fashion graphics, textile prints and all-over patterns</li><li>Typography, labels, patches and branding</li><li>Technical specifications and tech packs</li><li>Fittings, measurements and production follow-up</li><li>Art direction and visual identity</li>
           </ul>
         </section>
 
