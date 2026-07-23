@@ -50,7 +50,8 @@ export const projects: Project[] = [
     capabilities: ["Menswear", "Fashion graphics", "Art direction"],
     behanceUrl: "https://www.behance.net/gallery/241860497/Koroshi-SS26-27-AW26-27",
     media: [
-      behance("https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/42235f241860497.6960f64b7ee84.jpg", "Koroshi seasonal fashion graphic development", "landscape"),
+      // Exported from the verified jungle_repeat_seamless_fullcolor_master.png source artwork.
+      localOriginal("/images/projects/koroshi-jungle-repeat-master-01.jpg", "Koroshi jungle animal repeat master artwork", "landscape"),
       behance("https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/ea1c85241860497.6960f64b87283.jpg", "Koroshi SS26–27 and AW26–27 graphic detail", "portrait"),
       behance("https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/cbf828241860497.6960f64b856d4.jpg", "Koroshi menswear visual direction", "landscape"),
     ],
