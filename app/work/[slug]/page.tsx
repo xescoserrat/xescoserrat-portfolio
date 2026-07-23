@@ -12,7 +12,25 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: Props) {
   return params.then(({ slug }) => {
     const project = getProject(slug);
-    return project ? { title: `${project.title} — Xesco Serrat`, description: project.summary } : {};
+    if (!project) return {};
+
+    const title = `${project.title} — Xesco Serrat`;
+    return {
+      title,
+      description: project.summary,
+      alternates: { canonical: `/work/${project.slug}/` },
+      openGraph: {
+        title,
+        description: project.summary,
+        url: `/work/${project.slug}/`,
+        type: "article",
+      },
+      twitter: {
+        card: "summary",
+        title,
+        description: project.summary,
+      },
+    };
   });
 }
 
