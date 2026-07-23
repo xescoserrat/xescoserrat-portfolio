@@ -16,7 +16,11 @@ export default function Home() {
       <main id="main-content" tabIndex={-1}>
       <header className="site-header">
         <a href="#top" className="wordmark" aria-label="Xesco Serrat, home">XS</a>
-        <a href="#contact" className="header-link">Available for collaboration</a>
+        <nav className="site-nav" aria-label="Primary navigation">
+          <a href="#work">Chapters</a>
+          <a href="#process">Process</a>
+          <a className="header-link" href="#contact">Contact</a>
+        </nav>
       </header>
 
       <section id="top" className="hero" aria-labelledby="hero-title">

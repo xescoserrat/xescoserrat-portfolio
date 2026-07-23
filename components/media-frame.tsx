@@ -8,6 +8,7 @@ export function MediaFrame({ media, title, priority = false }: Props) {
       className={`media-frame ${media.aspect}`}
       src={media.src}
       alt={media.alt || title}
+      data-media-source={media.source}
       loading={priority ? "eager" : "lazy"}
       fetchPriority={priority ? "high" : "auto"}
     />

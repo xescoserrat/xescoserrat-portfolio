@@ -1,7 +1,10 @@
+export type MediaSource = "behance-temporary" | "local-original";
+
 export type MediaAsset = {
   src: string;
   alt: string;
   aspect: "portrait" | "landscape" | "square";
+  source: MediaSource;
 };
 
 export type Project = {
@@ -18,8 +21,22 @@ export type Project = {
   media: MediaAsset[];
 };
 
-// Source files use the highest-resolution project images currently rendered by Behance.
-// Replace these URLs with supplied original local files at any time without changing page structure.
+// Behance media remains temporary until an exact local source-file match is verified.
+// Replace a `behance` call with a `localOriginal` call without changing page structure.
+const behance = (src: string, alt: string, aspect: MediaAsset["aspect"]): MediaAsset => ({
+  src,
+  alt,
+  aspect,
+  source: "behance-temporary",
+});
+
+export const localOriginal = (src: string, alt: string, aspect: MediaAsset["aspect"]): MediaAsset => ({
+  src,
+  alt,
+  aspect,
+  source: "local-original",
+});
+
 export const projects: Project[] = [
   {
     slug: "koroshi-ss-aw",
@@ -33,9 +50,9 @@ export const projects: Project[] = [
     capabilities: ["Menswear", "Fashion graphics", "Art direction"],
     behanceUrl: "https://www.behance.net/gallery/241860497/Koroshi-SS26-27-AW26-27",
     media: [
-      { src: "https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/42235f241860497.6960f64b7ee84.jpg", alt: "Koroshi seasonal fashion graphic development", aspect: "landscape" },
-      { src: "https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/ea1c85241860497.6960f64b87283.jpg", alt: "Koroshi SS26–27 and AW26–27 graphic detail", aspect: "portrait" },
-      { src: "https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/cbf828241860497.6960f64b856d4.jpg", alt: "Koroshi menswear visual direction", aspect: "landscape" },
+      behance("https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/42235f241860497.6960f64b7ee84.jpg", "Koroshi seasonal fashion graphic development", "landscape"),
+      behance("https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/ea1c85241860497.6960f64b87283.jpg", "Koroshi SS26–27 and AW26–27 graphic detail", "portrait"),
+      behance("https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/cbf828241860497.6960f64b856d4.jpg", "Koroshi menswear visual direction", "landscape"),
     ],
   },
   {
@@ -50,9 +67,9 @@ export const projects: Project[] = [
     capabilities: ["Menswear", "Print", "Graphic design"],
     behanceUrl: "https://www.behance.net/gallery/212354207/Man-Designs-Desigual",
     media: [
-      { src: "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/5af428212354207.696a0eed750d8.jpg", alt: "Desigual menswear fashion graphic", aspect: "portrait" },
-      { src: "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/f3eea6212354207.696a0eed7333d.jpg", alt: "Desigual menswear print design", aspect: "landscape" },
-      { src: "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/6bdf57212354207.696a0eed7572f.jpg", alt: "Desigual menswear graphic detail", aspect: "portrait" },
+      behance("https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/5af428212354207.696a0eed750d8.jpg", "Desigual menswear fashion graphic", "portrait"),
+      behance("https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/f3eea6212354207.696a0eed7333d.jpg", "Desigual menswear print design", "landscape"),
+      behance("https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/6bdf57212354207.696a0eed7572f.jpg", "Desigual menswear graphic detail", "portrait"),
     ],
   },
   {
@@ -67,9 +84,9 @@ export const projects: Project[] = [
     capabilities: ["Womenswear", "Fashion graphics", "Colour"],
     behanceUrl: "https://www.behance.net/gallery/212364163/Woman-Designs-Desigual",
     media: [
-      { src: "https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/f14245212364163.697b33b9bb01a.jpg", alt: "Desigual womenswear fashion graphic", aspect: "portrait" },
-      { src: "https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/86a057212364163.697b33b9bc5bf.jpg", alt: "Desigual womenswear graphic detail", aspect: "landscape" },
-      { src: "https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/b41404212364163.697b33b9c3ca2.jpg", alt: "Desigual womenswear colour and print", aspect: "portrait" },
+      behance("https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/f14245212364163.697b33b9bb01a.jpg", "Desigual womenswear fashion graphic", "portrait"),
+      behance("https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/86a057212364163.697b33b9bc5bf.jpg", "Desigual womenswear graphic detail", "landscape"),
+      behance("https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/b41404212364163.697b33b9c3ca2.jpg", "Desigual womenswear colour and print", "portrait"),
     ],
   },
   {
@@ -84,9 +101,9 @@ export const projects: Project[] = [
     capabilities: ["Textile print", "Illustration", "Colour systems"],
     behanceUrl: "https://www.behance.net/gallery/110926415/Fashion-Prints",
     media: [
-      { src: "https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/5b26c5110926415.697b373536e5f.png", alt: "Fashion print illustration", aspect: "portrait" },
-      { src: "https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/6edc2c110926415.697b3735481f6.png", alt: "Fashion print visual composition", aspect: "square" },
-      { src: "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/1c9f07110926415.697b37353f6ed.png", alt: "Fashion print colour study", aspect: "landscape" },
+      behance("https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/5b26c5110926415.697b373536e5f.png", "Fashion print illustration", "portrait"),
+      behance("https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/6edc2c110926415.697b3735481f6.png", "Fashion print visual composition", "square"),
+      behance("https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/1c9f07110926415.697b37353f6ed.png", "Fashion print colour study", "landscape"),
     ],
   },
   {
@@ -101,8 +118,8 @@ export const projects: Project[] = [
     capabilities: ["Repeat", "Textile print", "Pattern"],
     behanceUrl: "https://www.behance.net/gallery/110930891/Rapport-fashion-prints",
     media: [
-      { src: "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/af0d68110930891.5ff836a900f4f.png", alt: "Rapport fashion print pattern", aspect: "landscape" },
-      { src: "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/26216b110930891.5ff836a8efd59.png", alt: "Rapport fashion print motif", aspect: "portrait" },
+      behance("https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/af0d68110930891.5ff836a900f4f.png", "Rapport fashion print pattern", "landscape"),
+      behance("https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/26216b110930891.5ff836a8efd59.png", "Rapport fashion print motif", "portrait"),
     ],
   },
   {
@@ -117,7 +134,7 @@ export const projects: Project[] = [
     capabilities: ["Brand identity", "Typography", "Creative thinking"],
     behanceUrl: "https://www.behance.net/gallery/241866335/Flasheros-the-brand",
     media: [
-      { src: "https://a5.behance.net/82385ac841c8486d1cbd6dc7e522c2f906828477/img/covers/max_808_webp-blocked.png", alt: "Flasheros the Brand project cover", aspect: "landscape" },
+      behance("https://a5.behance.net/82385ac841c8486d1cbd6dc7e522c2f906828477/img/covers/max_808_webp-blocked.png", "Flasheros the Brand project cover", "landscape"),
     ],
   },
 ];

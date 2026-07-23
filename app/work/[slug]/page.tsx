@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { MediaFrame } from "../../../components/media-frame";
+import { MediaGallery } from "../../../components/media-gallery";
 import { getProject, projects } from "../../../content/projects";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -24,16 +24,21 @@ export default async function ProjectPage({ params }: Props) {
   const nextProject = projects[(projectIndex + 1) % projects.length];
 
   return (
-    <main id="main-content">
+    <>
+      <a className="skip-link" href="#case-content">Skip to content</a>
+      <main id="main-content">
       <header className="case-header">
         <Link className="wordmark" href="/" aria-label="Xesco Serrat, home">XS</Link>
-        <Link className="header-link" href="/#work">All chapters</Link>
+        <nav className="case-nav" aria-label="Case study navigation">
+          <Link href="/#work">All chapters</Link>
+          <Link href="/#contact">Contact</Link>
+        </nav>
       </header>
-      <section className="case-hero" aria-labelledby="case-title">
+      <section className="case-hero" id="case-content" tabIndex={-1} aria-labelledby="case-title">
         <p className="eyebrow">{project.discipline} · {project.year}</p>
         <h1 id="case-title">{project.title}</h1>
         <p className="case-summary">{project.summary}</p>
-        <MediaFrame media={project.media[0]} title={project.title} priority />
+        <MediaGallery className="case-hero-media" media={[project.media[0]]} title={project.title} priority />
       </section>
       <section className="case-introduction layout-grid" aria-labelledby="introduction-title">
         <p className="section-index">( Context )</p>
@@ -43,9 +48,7 @@ export default async function ProjectPage({ params }: Props) {
           <p className="lede">{project.introduction}</p>
         </div>
       </section>
-      <section className="case-gallery" aria-label={`${project.title} project imagery`}>
-        {project.media.slice(1).map((media, index) => <MediaFrame key={media.src} media={media} title={`${project.title}, image ${index + 2}`} />)}
-      </section>
+      {project.media.length > 1 ? <MediaGallery className="case-gallery" media={project.media.slice(1)} title={project.title} /> : null}
       <section className="case-process layout-grid" aria-labelledby="case-process-title">
         <p className="section-index">( Design Process )</p>
         <div>
@@ -63,6 +66,7 @@ export default async function ProjectPage({ params }: Props) {
           <span className="eyebrow">Next chapter</span><strong>{nextProject.title}</strong><span aria-hidden="true">↗</span>
         </Link>
       </section>
-    </main>
+      </main>
+    </>
   );
 }
