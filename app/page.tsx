@@ -144,14 +144,33 @@ export default function Home() {
           <p className="eyebrow">Francesc Serrat / Xesco Serrat</p>
           <h2 id="about-title">Fashion Designer &amp;<br />Senior Fashion Graphic Designer.</h2>
           <div className="about-copy">
-            <p>Francesc Serrat is a Barcelona-based Fashion Designer and Senior Fashion Graphic Designer with approximately 16 years of experience in the fashion industry.</p>
-            <p>His background combines fashion graphics, textile prints, typography and visual identity with menswear design, garment and collection development, fittings, measurements, technical specifications, tech packs and production follow-up.</p>
-            <p>After more than 14 years as a Fashion Graphic Designer at Desigual across menswear, womenswear, kidswear and accessories, he joined Koroshi. There, he has worked for almost two years across three menswear seasons, developing collections from initial concept through graphics, fabric, colour, garment construction and final production.</p>
-            <p>His profile connects creative direction, fashion graphics and product development—making him suited to both Fashion Designer and Senior Fashion Graphic Designer roles.</p>
+            <div className="about-definition">
+              <p className="eyebrow">Professional definition</p>
+              <p>Francesc Serrat is a Barcelona-based Fashion Designer and Senior Fashion Graphic Designer with approximately 16 years of experience in the fashion industry.</p>
+            </div>
+            <div className="about-background">
+              <p className="eyebrow">Career background</p>
+              <p>After more than 14 years at Desigual as a Fashion Graphic Designer, he joined Koroshi, where he has worked across three menswear seasons combining fashion design, garment development, fashion graphics, textile prints, accessories, technical specifications and production follow-up.</p>
+            </div>
           </div>
-          <ul className="profile-capabilities" aria-label="Professional capabilities">
-            <li>≈16 years in fashion</li><li>Fashion and menswear design</li><li>Garment and collection development</li><li>Fashion graphics, textile prints and all-over patterns</li><li>Typography, labels, patches and branding</li><li>Technical specifications and tech packs</li><li>Fittings, measurements and production follow-up</li><li>Art direction and visual identity</li>
-          </ul>
+          <div className="about-details">
+            <section className="about-detail about-collaborators" aria-labelledby="collaborators-title">
+              <h3 className="eyebrow" id="collaborators-title">Selected collaborators</h3>
+              <p>Throughout his career, he has collaborated with fashion designers including Matteo Nocchi, Annelore Beemster, Estrella Archs, David Terroba, José Castro, Roser Loureiro, Alexis Reina, Adrián Platas, Thomas Meyer and Miranda Makaroff.</p>
+            </section>
+            <section className="about-detail about-expertise" aria-labelledby="expertise-title">
+              <h3 className="eyebrow" id="expertise-title">Areas of expertise</h3>
+              <p>His work connects product, graphics and visual identity—from garments, prints and typography to labels, patches, technical development and collection presentation.</p>
+              <ul className="profile-capabilities" aria-label="Professional capabilities">
+                <li>Fashion design &amp; menswear</li><li>Garment &amp; collection development</li><li>Fashion graphics &amp; textile prints</li><li>Typography, labels, patches &amp; branding</li><li>Technical specifications &amp; production follow-up</li><li>Art direction &amp; collection presentation</li>
+              </ul>
+            </section>
+            <section className="about-detail about-contact" aria-labelledby="availability-title">
+              <h3 className="eyebrow" id="availability-title">Availability &amp; contact</h3>
+              <p>Available for Fashion Designer and Senior Fashion Graphic Designer opportunities.</p>
+              <div><span>Barcelona, Spain</span><a href="mailto:xescoserrat@gmail.com">xescoserrat@gmail.com</a></div>
+            </section>
+          </div>
         </section>
 
         <footer id="contact" className="contact" aria-label="Contact">
