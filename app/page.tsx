@@ -7,7 +7,7 @@ import { koroshiSs26Categories } from "../content/koroshi-ss26";
 
 const brandLogos = {
   koroshi: { src: "/images/brands/koroshi-official-logo.webp", alt: "Koroshi official logo", className: "brand-logo--koroshi" },
-  desigual: { src: "/images/brands/desigual-official-logo-cropped.webp", alt: "Desigual official logo", className: "brand-logo--desigual" },
+  desigual: { src: "/images/brands/desigual-official-logo.png", alt: "Desigual official logo", className: "brand-logo--desigual" },
 } as const;
 
 const koroshiStream = koroshiSs26Categories.flatMap((category) => category.products.slice(0, 2)).map((product) => ({

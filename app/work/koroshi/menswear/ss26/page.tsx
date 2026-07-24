@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Breadcrumbs } from "../../../../../components/breadcrumbs";
 import { CategoryCard } from "../../../../../components/category-card";
 import { SiteHeader } from "../../../../../components/site-header";
-import { koroshiSs26Categories } from "../../../../../content/koroshi-ss26";
+import { koroshiSs26Categories, koroshiSs26EditorialSections } from "../../../../../content/koroshi-ss26";
 
 export const metadata: Metadata = {
   title: "Koroshi SS26 Menswear Catalogue | Francesc Serrat",
@@ -32,6 +32,9 @@ export default function KoroshiSs26Page() {
           <div className="category-grid">
             {koroshiSs26Categories.map((category) => (
               <CategoryCard key={category.slug} href={`/work/koroshi/menswear/ss26/${category.slug}`} title={category.title} description={category.description} cover={category.cover} count={category.products.length} countLabel="verified styles" />
+            ))}
+            {koroshiSs26EditorialSections.map((section) => (
+              <CategoryCard key={section.slug} href={`/work/koroshi/menswear/ss26/${section.slug}`} title={section.title} description={section.description} cover={section.cover} count={section.media.length} countLabel={section.recordLabel} />
             ))}
           </div>
         </section>

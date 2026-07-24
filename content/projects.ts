@@ -11,6 +11,9 @@ export type MediaAsset = {
   src: string;
   alt: string;
   aspect: "portrait" | "landscape" | "square";
+  width?: number;
+  height?: number;
+  fit?: "cover" | "contain";
   source: MediaSource;
   provenance?: MediaProvenance;
 };
