@@ -3,41 +3,46 @@ import { MediaFrame } from "../components/media-frame";
 import { SiteHeader } from "../components/site-header";
 import { portfolioWorlds } from "../content/portfolio-worlds";
 import { mediaInventory } from "../content/media-inventory";
+import { koroshiSs26Categories } from "../content/koroshi-ss26";
 
-const visualStream = mediaInventory.filter((item) => (
-  item.publicationStatus === "published" && ["Koroshi", "Desigual", "Flasheros"].includes(item.brand)
-));
+const brandLogos = {
+  koroshi: { src: "/images/brands/koroshi-official-logo.webp", alt: "Koroshi official logo", className: "brand-logo--koroshi" },
+  desigual: { src: "/images/brands/desigual-official-logo-cropped.webp", alt: "Desigual official logo", className: "brand-logo--desigual" },
+} as const;
+
+const koroshiStream = koroshiSs26Categories.flatMap((category) => category.products.slice(0, 2)).map((product) => ({
+  id: product.styleCode,
+  media: product.thumbnail!,
+  brand: "Koroshi",
+  category: product.proposedCategory,
+  creativeDiscipline: "Menswear / Fashion Design + Fashion Graphics",
+  season: product.season,
+  href: `/work/koroshi/menswear/ss26/product/${product.styleCode.toLowerCase()}`,
+}));
+
+const desigualStream = mediaInventory.filter((item) => (
+  item.publicationStatus === "published" && item.brand === "Desigual"
+)).slice(0, 8).map((item) => ({ ...item, href: item.proposedRoute }));
+
+const visualStream = [...koroshiStream, ...desigualStream];
 
 const archiveDisciplines = [
   {
     title: "Fashion / Product Development",
     description: "Menswear design, product thinking, technical development and the detail that carries a collection into production.",
     links: [
-      { label: "Koroshi / T-Shirts & Sleeveless", href: "/work/koroshi/t-shirts-sleeveless" },
-      { label: "Koroshi / Knitwear", href: "/work/koroshi/knitwear" },
-      { label: "Koroshi / Product Development", href: "/work/koroshi/product-development" },
+      { label: "Koroshi / SS26 Menswear", href: "/work/koroshi/menswear/ss26" },
+      { label: "Koroshi / T-Shirts", href: "/work/koroshi/menswear/ss26/t-shirts" },
+      { label: "Koroshi / Sweatshirts", href: "/work/koroshi/menswear/ss26/sweatshirts" },
     ],
   },
   {
     title: "Fashion Graphics / Textile Prints",
     description: "Graphic languages, typography, all-over print and product application built for placement and recognition.",
     links: [
-      { label: "Koroshi / Fashion Graphics", href: "/work/koroshi/fashion-graphics" },
+      { label: "Koroshi / SS26 Shirts", href: "/work/koroshi/menswear/ss26/shirts" },
       { label: "Desigual / Man", href: "/work/desigual/man" },
       { label: "Desigual / Woman", href: "/work/desigual/woman" },
-    ],
-  },
-  {
-    title: "Photography / Personal Project",
-    description: "A personal space for photography, visual experimentation, art direction and an early future-brand universe.",
-    links: [{ label: "Flasheros", href: "/work/flasheros" }],
-  },
-  {
-    title: "Independent Print Archive",
-    description: "Two preserved print studies kept separate until their original brand or division can be verified with confidence.",
-    links: [
-      { label: "Fashion Prints", href: "/work/independent-print-archive" },
-      { label: "Rapport Fashion Prints", href: "/work/independent-print-archive" },
     ],
   },
 ];
@@ -56,14 +61,14 @@ export default function Home() {
 
         <section className="portfolio-worlds" aria-labelledby="worlds-title">
           <div className="worlds-heading">
-            <p className="eyebrow">Portfolio / Three worlds</p>
+            <p className="eyebrow">Portfolio / Brand worlds</p>
             <h2 id="worlds-title">Start with the context.<br />Then go deeper.</h2>
           </div>
           <div className="worlds-grid">
             {portfolioWorlds.map((world, index) => (
               <article className={`world-card world-card--${index + 1}`} key={world.slug}>
-                <Link className="world-card-image" href={world.href} aria-label={`Explore ${world.title}`}>
-                  <MediaFrame media={world.cover} title={world.title} />
+                <Link className="world-card-image world-card-logo" href={world.href} aria-label={`Explore ${world.title}`}>
+                  <img className={`brand-logo ${brandLogos[world.slug].className}`} src={brandLogos[world.slug].src} alt={brandLogos[world.slug].alt} />
                   <span className="world-card-open" aria-hidden="true">Explore ↗</span>
                 </Link>
                 <div className="world-card-copy">
@@ -85,7 +90,7 @@ export default function Home() {
           <div className="stream-grid">
             {visualStream.map((item, index) => (
               <article className={`stream-item stream-item--${(index % 9) + 1}`} key={item.id}>
-                <Link className="stream-image-link" href={item.proposedRoute} aria-label={`Explore ${item.brand}: ${item.category}`}>
+                <Link className="stream-image-link" href={item.href} aria-label={`Explore ${item.brand}: ${item.category}`}>
                   <MediaFrame media={item.media} title={`${item.brand}: ${item.category}`} />
                   <span className="stream-view" aria-hidden="true">Explore ↗</span>
                 </Link>
@@ -114,7 +119,7 @@ export default function Home() {
               </article>
             ))}
             <article className="archive-discipline archive-process-link">
-              <p className="section-index">( 05 )</p>
+              <p className="section-index">( 03 )</p>
               <div><h3>Design Process</h3><p>Observation, tension, system and edit—applied to every visual decision.</p></div>
               <a href="#process">Read the process <span aria-hidden="true">↓</span></a>
             </article>

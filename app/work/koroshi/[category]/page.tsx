@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "../../../../components/breadcrumbs";
-import { MediaGallery } from "../../../../components/media-gallery";
 import { SiteHeader } from "../../../../components/site-header";
 import { getKoroshiCategory, koroshiCategories } from "../../../../content/portfolio-worlds";
 
@@ -25,10 +24,9 @@ export default async function KoroshiCategoryPage({ params }: Props) {
   const { category: slug } = await params;
   const category = getKoroshiCategory(slug);
   if (!category) notFound();
-  const remainingMedia = category.media.filter((media) => media.src !== category.cover.src);
-  const categoryIndex = koroshiCategories.findIndex((item) => item.slug === category.slug);
-  const previousCategory = koroshiCategories[(categoryIndex - 1 + koroshiCategories.length) % koroshiCategories.length];
-  const nextCategory = koroshiCategories[(categoryIndex + 1) % koroshiCategories.length];
+  const destination = category.slug === "t-shirts-sleeveless"
+    ? "/work/koroshi/menswear/ss26/t-shirts"
+    : "/work/koroshi/menswear/ss26";
 
   return (
     <>
@@ -37,18 +35,14 @@ export default async function KoroshiCategoryPage({ params }: Props) {
       <main id="main-content">
         <section className="category-hero" id="category-content" tabIndex={-1} aria-labelledby="category-title">
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Koroshi", href: "/work/koroshi" }, { label: category.title }]} />
-          <p className="eyebrow">Koroshi / Curated gallery</p>
-          <h1 id="category-title">{category.title}</h1>
-          <p className="world-summary">{category.description}</p>
-          <MediaGallery className="world-hero-media" media={[category.cover]} title={category.title} priority />
+          <p className="eyebrow">Koroshi / Preserved bookmark</p>
+          <h1 id="category-title">Koroshi SS26<br />has moved.</h1>
+          <p className="world-summary">This previous Koroshi link remains available for compatibility. The current public catalogue is now organized through the verified Menswear / Spring–Summer 2026 product hierarchy.</p>
         </section>
-        {remainingMedia.length ? <MediaGallery className="category-gallery" media={remainingMedia} title={category.title} /> : null}
         <nav className="category-return" aria-label="Koroshi category navigation">
           <Link href="/">← Home</Link>
           <Link href="/work/koroshi">← All Koroshi disciplines</Link>
-          <Link href={`/work/koroshi/${previousCategory.slug}`}>Previous: {previousCategory.title}</Link>
-          <Link href={`/work/koroshi/${nextCategory.slug}`}>Next: {nextCategory.title} →</Link>
-          <Link href={`/work/${category.sourceProject.slug}`}>View full original case study ↗</Link>
+          <Link href={destination}>Open the SS26 catalogue →</Link>
         </nav>
       </main>
     </>

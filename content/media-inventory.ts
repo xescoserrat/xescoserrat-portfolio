@@ -1,5 +1,6 @@
 import type { MediaAsset, MediaSource, Project } from "./projects";
 import { projects } from "./projects";
+import { koroshiSs26ReferenceInventory } from "./koroshi-ss26";
 
 export type MediaConfidence = "confirmed" | "high" | "review-required";
 export type PublicationStatus = "published" | "legacy-only" | "internal-review";
@@ -120,9 +121,14 @@ export const mediaInventory: MediaInventoryItem[] = [
     season: "Ongoing",
     confidence: "confirmed",
     proposedRoute: "/work/flasheros",
-    publicationStatus: "published",
+    publicationStatus: "legacy-only",
   }]),
 ];
+
+// The SS26 catalogue has a product-level provenance model because one style may
+// have several colour references and image views. It intentionally remains
+// separate from the older case-study image inventory above.
+export const koroshiSs26Inventory = koroshiSs26ReferenceInventory;
 
 export function mediaByIds(ids: string[]) {
   return ids.map((id) => {

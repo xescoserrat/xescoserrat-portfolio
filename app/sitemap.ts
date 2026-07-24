@@ -13,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${siteUrl}${path}`,
       lastModified: new Date(),
     })),
-    ...projects.map((project) => ({
+    ...projects.filter((project) => project.slug !== "flasheros").map((project) => ({
       url: `${siteUrl}/work/${project.slug}`,
       lastModified: new Date(),
     })),

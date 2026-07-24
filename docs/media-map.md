@@ -1,52 +1,52 @@
 # Internal media map
 
-`content/media-inventory.ts` is the structured source of truth for every public and retained legacy asset. It records source, brand, division, garment type, creative discipline, category, season, provenance type, confidence, current route, proposed route and publication status. Do not assign an asset to a brand or division in a route without first updating that file.
+`content/media-inventory.ts` remains the source of truth for the retained case-study media. `content/koroshi-ss26.ts` is the SS26 product-level extension: every supplied style reference has one record with its colour references, source location, web export path, available views, confidence and publication status.
 
-## Audit result
+## Koroshi SS26 audit
 
-| Group | Inventory IDs | Count | Public treatment | Source status |
-| --- | --- | ---: | --- | --- |
-| Koroshi menswear | `K-01`–`K-21` | 21 | Four verified category galleries | 9 local-original, 5 official-brand-source, 7 Behance-temporary |
-| Desigual Man | `DM-01`–`DM-08` | 8 | Sweatshirts & Knitwear; Shirts & Outerwear | Behance-temporary; `DM-05` remains legacy-only |
-| Desigual Woman | `DW-01`–`DW-08` | 8 | Dresses; Blouses & Tops | Behance-temporary; `DW-08` remains legacy-only |
-| Fashion Prints | `FP-01`–`FP-07` | 7 | Independent Print Archive and preserved legacy route | Behance-temporary; brand attribution under review |
-| Rapport Fashion Prints | `RP-01`–`RP-07` | 7 | Independent Print Archive and preserved legacy route | Behance-temporary; brand attribution under review |
-| Flasheros | `FL-01` | 1 | Final photography / personal-project chapter | Cached Behance-temporary cover |
+| Status | Count | Treatment |
+| --- | ---: | --- |
+| Supplied style references | 118 | All retained in `koroshiSs26ReferenceInventory` |
+| Public verified styles | 109 | Static product routes with a locally stored, optimized representative product export |
+| Internal review | 9 | Preserved in inventory; not publicly categorized or routed |
+| New optimized local product exports | 108 | WebP, capped at 1600 × 2000px, generated from exact `TRABAJO HD` product exports |
+| Previously verified official Koroshi product exports | 2 views of `2611MC00` | Retained as local `official-brand-source` media |
 
-**Total:** 52 images, up from the previous 39-image project record. No image is duplicated merely to increase page length; an asset can appear in more than one relevant Koroshi category where it documents both product and process.
+All new SS26 product exports come from exact folders and direct product-export files under:
 
-## Confirmed Koroshi sources
+`/Volumes/TRABAJO HD/MUESTRARIO XESCO SS26/<style-code>/`
 
-The following exact source relationships were visually verified before exporting local web assets:
+The current official Koroshi catalogue was searched normally using its public product endpoints. The historic SS26 style codes were not available as current public product records, so no product name, official category or product URL is invented in the public catalogue. Where title/category evidence is unavailable, the UI uses a descriptive garment kind and labels the classification as verified local product evidence.
 
-- `K-09`–`K-10`: model `2611MC00`; original technical source: `/Volumes/TRABAJO HD/MUESTRARIO XESCO SS26/2611MC00/2611MC00 SKETCH.pdf`; public product images are stored as optimized WebP copies and marked `official-brand-source`.
-- `K-11`–`K-14`: model `2611MS47`; original artwork source: `/Volumes/TRABAJO HD/MUESTRARIO XESCO SS26/2611MS47/2611MS47 ARTWORKS.pdf`; `K-11`–`K-13` are optimized official product images and `K-14` is an optimized local artwork specification.
-- `K-15`: `2611MC00` technical development sheet, exported from the same original SS26 source PDF.
-- `K-16`–`K-19`: `2621TR35` AW26–27 knitwear technical source and sample photographs from `/Volumes/TRABAJO HD/MUESTRARIO AW 26-27/2621TR35/`.
-- `K-20`–`K-21`: `2621JA53` AW26–27 outerwear technical source and lab-dip photograph from `/Volumes/TRABAJO HD/MUESTRARIO AW 26-27/2621JA53/`.
+## Public SS26 categories
 
-Raw page URLs, image URLs and source paths are held in the provenance object on the corresponding `content/projects.ts` media item. Masters are not copied into the repository; local exports are WebP, resized within 1800 × 2400 pixels and quality-optimized for the static site.
+| Category | Verified styles |
+| --- | ---: |
+| Shirts | 8 |
+| T-Shirts | 37 |
+| Sleeveless T-Shirts | 21 |
+| Polo Shirts | 4 |
+| Sweatshirts | 15 |
+| Underwear | 2 |
+| Swimwear | 13 |
+| Accessories (caps, socks, backpack) | 9 |
 
-## Public route map
+The available product evidence confirms that the `2613HA` group contains caps and `2611ZT` contains socks. No belts category is published. `2611PS12` is a trousers reference and stays internal by instruction.
 
-- **Koroshi / Menswear:** `/work/koroshi/t-shirts-sleeveless`, `/work/koroshi/knitwear`, `/work/koroshi/fashion-graphics`, `/work/koroshi/product-development`.
-- **Desigual / Man:** `/work/desigual/man/sweatshirts-knitwear`, `/work/desigual/man/shirts-outerwear`.
-- **Desigual / Woman:** `/work/desigual/woman/dresses`, `/work/desigual/woman/blouses-tops`.
-- **Secondary only:** `/work/independent-print-archive` keeps Fashion Prints and Rapport Fashion Prints visible without assigning either one to Koroshi or Desigual.
-- **Photography / Personal Project:** `/work/flasheros` remains the final top-level chapter.
+## Internal-review SS26 references
 
-The six original `/work/<slug>/` pages are retained as complete, indexable compatibility case studies. Their contextual navigation returns to their parent brand, division or secondary archive instead of treating them as equal top-level worlds.
+- `2611PC28-2`: retained source folder shares an export name with `2611PC28`; the distinct product identity is unresolved.
+- `2611PS12`: exact trousers reference, deliberately excluded from this personal selection.
+- `2611UN05`, `2611WA11`, `2611WA23`: exact folders exist but no clean direct product export was available for a public image.
+- `2611ZT03`, `2611ZT05`, `2611ZT06`, `2611ZT07`: exact folders exist but available direct exports are too limited in quality for public publication.
 
-## Deferred categories and unresolved attribution
+To publish any of these later, provide a clean, exact product image (preferably a 1600px+ JPG/PNG/TIFF export) and, where relevant, confirmation of the correct distinct style identity.
 
-The audit did not support public Koroshi categories for sweatshirts, trousers, shirts or accessories, nor a separate Desigual Man/Woman T-shirt, typography, labels or textile-print category. These remain absent rather than inferred from filenames or visually similar work.
+## Current public route map
 
-`ALL PRINTS XESCO` was audited recursively, but its candidates did not provide a reliable Koroshi or Desigual / Man / Woman correspondence for the existing Fashion Prints and Rapport media. They therefore remain a clearly labelled **Independent Print Archive** rather than being attributed to a professional brand.
+- **Koroshi:** `/work/koroshi` → `/work/koroshi/menswear` → `/work/koroshi/menswear/ss26` → category → product.
+- **Desigual:** existing Man and Woman hierarchy remains unchanged pending a dedicated later milestone.
+- **Legacy Koroshi category URLs:** static compatibility pages link into the SS26 catalogue; they no longer surface AW work.
+- **Flasheros:** route, data, cached cover and content are preserved but temporarily unpublished. It is absent from the home hierarchy, selected work, archive and sitemap.
 
-No exact official Desigual replacement was adopted: public search candidates were similar, not the same garment or artwork. Existing Desigual media is therefore intentionally retained as Behance-temporary.
-
-## Flasheros recovery status
-
-`FL-01` is the existing locally cached, non-explicit Behance cover. A recursive search of `TRABAJO HD` returned no file named or reliably associated with Flasheros. A normal public Behance page request returned a platform error, so no additional asset was downloaded or inferred.
-
-To expand the gallery safely, provide approved original Flasheros JPG, PNG or TIFF exports (at least 2000 pixels on the long edge), their intended order and captions, plus a note identifying any image appropriate for the public home-page preview. The data model and the case-study layout can accept them without redesigning the site.
+The two home-brand logos are locally stored authentic assets from the official Koroshi and Desigual sites. Product media is not permanently hotlinked. Raw masters remain outside the repository.

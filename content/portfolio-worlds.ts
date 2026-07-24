@@ -1,6 +1,7 @@
 import type { MediaAsset, Project } from "./projects";
 import { projects } from "./projects";
 import { mediaByIds } from "./media-inventory";
+import { koroshiSs26Categories, koroshiSs26Paths } from "./koroshi-ss26";
 
 export type PortfolioCategory = {
   slug: string;
@@ -20,7 +21,7 @@ export type PortfolioDivision = {
 };
 
 export type PortfolioWorld = {
-  slug: "koroshi" | "desigual" | "flasheros";
+  slug: "koroshi" | "desigual";
   title: string;
   description: string;
   cover: MediaAsset;
@@ -51,7 +52,6 @@ function category(
 const koroshiProject = project("koroshi-ss-aw");
 const desigualManProject = project("man-designs-desigual");
 const desigualWomanProject = project("woman-designs-desigual");
-const flasherosProject = project("flasheros");
 
 export const koroshiCategories: PortfolioCategory[] = [
   category(
@@ -136,8 +136,8 @@ export const portfolioWorlds: PortfolioWorld[] = [
   {
     slug: "koroshi",
     title: "Koroshi",
-    description: "Current menswear work across three seasons: fashion design, garment development, fashion graphics, textile prints and production follow-up.",
-    cover: mediaByIds(["K-11"])[0],
+    description: "Current menswear work for Spring–Summer 2026 across Fashion Design, Fashion Graphic Design, garment development, prints, accessories and production follow-up.",
+    cover: koroshiSs26Categories[0].cover,
     href: "/work/koroshi",
     categories: koroshiCategories,
   },
@@ -149,18 +149,11 @@ export const portfolioWorlds: PortfolioWorld[] = [
     href: "/work/desigual",
     divisions: desigualDivisions,
   },
-  {
-    slug: "flasheros",
-    title: "Flasheros",
-    description: "A personal photography and visual-concept project: an abstract, early exploration of a possible future clothing brand.",
-    cover: flasherosProject.media[0],
-    href: "/work/flasheros",
-  },
 ];
 
 export const portfolioWorldPaths = [
   "/work/koroshi",
-  ...koroshiCategories.map((item) => `/work/koroshi/${item.slug}`),
+  ...koroshiSs26Paths,
   "/work/desigual",
   ...desigualDivisions.flatMap((division) => [
     `/work/desigual/${division.slug}`,

@@ -1,19 +1,17 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Breadcrumbs } from "../../../components/breadcrumbs";
-import { CategoryCard } from "../../../components/category-card";
 import { MediaGallery } from "../../../components/media-gallery";
 import { SiteHeader } from "../../../components/site-header";
 import { getWorld } from "../../../content/portfolio-worlds";
 
-function requiredWorld(slug: "koroshi" | "desigual" | "flasheros") {
+function requiredWorld(slug: "koroshi" | "desigual") {
   const current = getWorld(slug);
   if (!current) throw new Error(`${slug} portfolio world is incomplete`);
   return current;
 }
 
 const world = requiredWorld("koroshi");
-if (!world.categories) throw new Error("Koroshi categories are incomplete");
-const categories = world.categories;
 
 export const metadata: Metadata = {
   title: "Koroshi — Fashion Design & Menswear | Francesc Serrat",
@@ -33,7 +31,7 @@ export default function KoroshiPage() {
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Koroshi" }]} />
           <p className="eyebrow">Current professional work</p>
           <h1 id="koroshi-title">Koroshi</h1>
-          <p className="world-summary">{world.description}</p>
+          <p className="world-summary">Current menswear work developed across Fashion Design, Fashion Graphic Design, garment development, prints, accessories and production follow-up.</p>
           <MediaGallery className="world-hero-media" media={[world.cover]} title="Koroshi" priority />
         </section>
         <section className="world-context layout-grid" aria-labelledby="koroshi-context-title">
@@ -41,18 +39,17 @@ export default function KoroshiPage() {
           <div>
             <p className="eyebrow">Fashion Designer &amp; Senior Fashion Graphic Designer</p>
             <h2 id="koroshi-context-title">A collection is resolved as one connected system.</h2>
-            <p className="lede">Across almost two years and three menswear seasons, the work moves from initial concept through graphics, fabric, colour, garment construction, fittings and final production. Browse the verified work by product and development context.</p>
+            <p className="lede">This public catalogue begins with the verified Spring–Summer 2026 selection. It preserves product context while keeping the work legible as a portfolio rather than a shop.</p>
           </div>
         </section>
         <section className="category-overview" aria-labelledby="koroshi-categories-title">
           <div className="category-heading">
-            <p className="eyebrow">Koroshi / Browse by discipline</p>
-            <h2 id="koroshi-categories-title">Product, surface and process.</h2>
+            <p className="eyebrow">Koroshi / Division</p>
+            <h2 id="koroshi-categories-title">Menswear.<br />Spring–Summer 2026.</h2>
           </div>
-          <div className="category-grid">
-            {categories.map((category) => (
-              <CategoryCard key={category.slug} href={`/work/koroshi/${category.slug}`} title={category.title} description={category.description} cover={category.cover} count={category.media.length} />
-            ))}
+          <div className="koroshi-season-entry">
+            <p>Browse the collection through garment categories, then move into the verified product records and their available views.</p>
+            <Link href="/work/koroshi/menswear">Enter Menswear <span aria-hidden="true">↗</span></Link>
           </div>
         </section>
       </main>
