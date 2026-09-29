@@ -5,11 +5,12 @@ import { projects } from "../content/projects";
 export const dynamic = "force-static";
 
 const siteUrl = "https://xescoserrat-portfolio.xescoserrat.workers.dev";
+const primaryPaths = ["/archive", "/about", "/contact", "/work/prints"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: siteUrl, lastModified: new Date() },
-    ...portfolioWorldPaths.map((path) => ({
+    ...[...new Set([...primaryPaths, ...portfolioWorldPaths])].map((path) => ({
       url: `${siteUrl}${path}`,
       lastModified: new Date(),
     })),

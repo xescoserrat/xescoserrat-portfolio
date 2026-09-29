@@ -26,7 +26,7 @@ export default function IndependentPrintArchivePage() {
       <SiteHeader />
       <main id="main-content">
         <section className="category-hero" id="archive-content" tabIndex={-1} aria-labelledby="archive-title">
-          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Archive", href: "/#archive" }, { label: "Independent Print Archive" }]} />
+          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Archive", href: "/archive" }, { label: "Independent Print Archive" }]} />
           <p className="eyebrow">Independent studies / Secondary archive</p>
           <h1 id="archive-title">Independent Print Archive</h1>
           <p className="world-summary">Fashion Prints and Rapport Fashion Prints are preserved here as independent studies. Their original brand and division have not been verified, so they are not assigned to Koroshi or Desigual.</p>
@@ -43,7 +43,7 @@ export default function IndependentPrintArchivePage() {
         <MediaGallery className="category-gallery" media={remainingMedia} title="Independent Print Archive" />
         <nav className="category-return" aria-label="Independent Print Archive navigation">
           <Link href="/">← Home</Link>
-          <Link href="/#archive">← Archive</Link>
+          <Link href="/archive">← Archive</Link>
           <Link href="/work/fashion-prints">View Fashion Prints case study ↗</Link>
           <Link href="/work/rapport-fashion-prints">View Rapport Fashion Prints case study ↗</Link>
         </nav>
