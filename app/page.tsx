@@ -2,7 +2,9 @@ import Link from "next/link";
 import { SiteHeader } from "../components/site-header";
 
 const brandLogos = {
-  desigual: { src: "/images/brands/desigual-official-logo.png", alt: "Desigual official logo" },
+  // The transparent source logo has generous horizontal padding; this verified cropped export
+  // keeps the wordmark optically equal to Koroshi without altering either logo's proportions.
+  desigual: { src: "/images/brands/desigual-official-logo-cropped.webp", alt: "Desigual official logo" },
   koroshi: { src: "/images/brands/koroshi-official-logo.webp", alt: "Koroshi official logo" },
 } as const;
 
@@ -19,10 +21,6 @@ export default function Home() {
             <p>Fashion design, garment development, graphics, textile prints and visual direction.</p>
           </div>
 
-          <div className="landing-print" aria-hidden="true">
-            <img src="/images/projects/koroshi-jungle-repeat-master-01.jpg" alt="" />
-          </div>
-
           <nav className="landing-brands" aria-label="Portfolio brand worlds">
             <Link href="/work/desigual" className="landing-brand" aria-label="Enter Desigual archive">
               <img src={brandLogos.desigual.src} alt={brandLogos.desigual.alt} />
@@ -31,6 +29,10 @@ export default function Home() {
             <Link href="/work/koroshi" className="landing-brand" aria-label="Enter Koroshi archive">
               <img src={brandLogos.koroshi.src} alt={brandLogos.koroshi.alt} />
               <span>Koroshi archive</span>
+            </Link>
+            <Link href="/work/artworks" className="landing-brand landing-brand--artworks" aria-label="Enter Artworks archive">
+              <strong>Artworks</strong>
+              <span>Prints, repeats &amp; graphic studies<br />across Koroshi and Desigual</span>
             </Link>
           </nav>
         </section>

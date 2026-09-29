@@ -24,8 +24,8 @@ export default function ArchivePage() {
         <header className="archive-page-header" id="archive-content" tabIndex={-1}>
           <p className="eyebrow">Francesc Serrat / Visual archive</p>
           <h1>Archive</h1>
-          <p>Koroshi menswear, Desigual fashion graphics and independent print studies, mixed as one visual practice.</p>
-          <Link className="archive-context-link" href="/work/prints">Open Prints <span aria-hidden="true">↗</span></Link>
+          <p>Koroshi menswear, Desigual fashion graphics and a growing artwork miscellany—mixed as one visual practice.</p>
+          <Link className="archive-context-link" href="/work/artworks">Open Artworks <span aria-hidden="true">↗</span></Link>
         </header>
         <VisualArchive title="Francesc Serrat archive" items={allVisualArchiveItems} priorityCount={8} />
       </main>

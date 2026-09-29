@@ -38,3 +38,14 @@ main .product-gallery img.media-frame.media-frame--contain{display:block;width:1
 @media(max-width:700px){.landing-panel{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr) auto;gap:1.5rem;padding-top:6.5rem}.landing-intro{max-width:16rem}.landing-intro h1{font-size:clamp(1.45rem,7.5vw,2.35rem)}.landing-print{align-self:center;width:min(62vw,15rem)}.landing-brands{gap:0}.landing-brand{min-height:4.8rem;padding:.8rem 0}.landing-brand img{height:2rem}.landing-brand span{font-size:.54rem}.archive-page{padding-top:7rem}.archive-page-header{grid-template-columns:1fr;gap:1rem;margin-bottom:3.5rem}.archive-page-header>.eyebrow,.archive-page-header h1,.archive-page-header>p:not(.eyebrow),.archive-page-header>.archive-context-link{grid-column:auto}.archive-page-header h1{font-size:clamp(3.6rem,17vw,6.5rem)}.visual-archive{--archive-gap:.7rem;--archive-image-height:clamp(8rem,42vw,12rem)}.visual-archive-item .media-frame{max-width:100%}.visual-archive-hint{opacity:1}.visual-archive-lightbox{padding:4rem var(--pad) 4.5rem}.visual-archive-lightbox-content{grid-template-columns:1fr;gap:1rem;max-height:calc(100svh - 7rem);overflow:auto}.visual-archive-lightbox .lightbox-image{max-height:55svh}.visual-archive-lightbox-copy{padding-bottom:0}.visual-archive-lightbox-copy h2{font-size:1.75rem}.about-page-content{padding-top:7rem}.about-page-content>h1{font-size:clamp(3.5rem,15vw,6.5rem)}.contact-page{padding-top:7rem}}
 /* Keep both wordmarks in equal-width frames without distorting either mark. */
 .landing-brand img{width:min(100%,14rem);height:auto}
+/* The entry screen is deliberately brief: an introduction and three portfolio worlds. */
+.landing-panel{grid-template-columns:minmax(18rem,1fr) minmax(17rem,.82fr);align-items:center}
+.landing-intro{max-width:30rem}
+.landing-intro h1{font-size:clamp(2.45rem,4.35vw,5.1rem);line-height:.86}
+.landing-brands{align-content:center}
+.landing-brand{min-height:clamp(5.75rem,9vw,8.25rem)}
+.landing-brand img{width:min(100%,15rem);height:auto;object-fit:contain}
+.landing-brand--artworks{display:grid;gap:.62rem;align-content:center}
+.landing-brand--artworks strong{font:600 clamp(1.65rem,3.15vw,3.45rem)/.8 "Playfair Display",serif;letter-spacing:-.075em}
+.landing-brand--artworks span{line-height:1.35}
+@media(max-width:700px){.landing-panel{grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:1.5rem;padding-top:6.5rem;padding-bottom:1.6rem}.landing-intro{max-width:21rem}.landing-intro h1{font-size:clamp(2rem,8.4vw,3.1rem);line-height:.88}.landing-brands{align-content:end}.landing-brand{min-height:clamp(4.35rem,15vw,5.3rem);padding:.65rem 0}.landing-brand img{width:min(100%,12.5rem);height:auto}.landing-brand--artworks{gap:.4rem}.landing-brand--artworks strong{font-size:clamp(1.45rem,7vw,2rem)}.landing-brand--artworks span{font-size:.5rem;line-height:1.3}}

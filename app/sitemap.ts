@@ -5,7 +5,7 @@ import { projects } from "../content/projects";
 export const dynamic = "force-static";
 
 const siteUrl = "https://xescoserrat-portfolio.xescoserrat.workers.dev";
-const primaryPaths = ["/archive", "/about", "/contact", "/work/prints"];
+const primaryPaths = ["/archive", "/about", "/contact", "/work/artworks"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

@@ -1,7 +1,12 @@
 import { publishedKoroshiSs26Products } from "./koroshi-ss26";
-import { mediaInventory } from "./media-inventory";
+import {
+  desigualManBehanceMedia,
+  desigualWomanBehanceMedia,
+  fashionPrintsBehanceMedia,
+  rapportPrintsBehanceMedia,
+} from "./behance-archive-media";
+import { koroshiLocalArtworkMedia } from "./koroshi-artwork-media";
 import type { MediaAsset } from "./projects";
-import { projects } from "./projects";
 
 export type VisualArchiveItem = {
   id: string;
@@ -11,12 +16,6 @@ export type VisualArchiveItem = {
   description?: string;
   href?: string;
 };
-
-function requiredProject(slug: string) {
-  const project = projects.find((item) => item.slug === slug);
-  if (!project) throw new Error(`Missing project data for ${slug}`);
-  return project;
-}
 
 function uniqueByMedia(items: VisualArchiveItem[]) {
   const seen = new Set<string>();
@@ -48,65 +47,60 @@ const koroshiProductItems: VisualArchiveItem[] = publishedKoroshiSs26Products.fl
   href: `/work/koroshi/menswear/ss26/product/${product.styleCode.toLowerCase()}`,
 })));
 
-const koroshiProject = requiredProject("koroshi-ss-aw");
-const koroshiCollectionItems: VisualArchiveItem[] = koroshiProject.media.map((media, index) => ({
-  id: `koroshi-collection-${index + 1}`,
+// The brand archive deliberately keeps to complete product and garment views.
+export const koroshiVisualArchiveItems = uniqueByMedia(koroshiProductItems);
+
+const desigualManItems = desigualManBehanceMedia.map((media, index) => ({
+  id: `desigual-man-${index + 1}`,
   media,
-  label: "Koroshi / Collection record",
-  title: "Koroshi Menswear",
-  description: "Fashion design, garment development, graphics and textile direction considered as one menswear system.",
-  href: `/work/${koroshiProject.slug}`,
-}));
+  label: "Desigual / Menswear",
+  title: "Desigual menswear fashion graphics",
+} satisfies VisualArchiveItem));
 
-export const koroshiVisualArchiveItems = uniqueByMedia([
-  ...koroshiCollectionItems,
-  ...koroshiProductItems,
-]);
-
-const desigualItems = mediaInventory
-  .filter((item) => item.brand === "Desigual")
-  .map((item) => ({
-    id: `desigual-${item.id.toLowerCase()}`,
-    media: item.media,
-    label: `Desigual / ${item.division}`,
-    title: item.garmentType,
-  } satisfies VisualArchiveItem));
-
-const desigualManItems = desigualItems.filter((item) => item.label.endsWith("/ Man"));
-const desigualWomanItems = desigualItems.filter((item) => item.label.endsWith("/ Woman"));
+const desigualWomanItems = desigualWomanBehanceMedia.map((media, index) => ({
+  id: `desigual-woman-${index + 1}`,
+  media,
+  label: "Desigual / Womenswear",
+  title: "Desigual womenswear fashion graphics",
+} satisfies VisualArchiveItem));
 
 export const desigualVisualArchiveItems = uniqueByMedia(interleave(desigualManItems, desigualWomanItems));
 
-const independentPrintItems = mediaInventory
-  .filter((item) => item.brand === "Independent")
-  .map((item) => ({
-    id: `print-${item.id.toLowerCase()}`,
-    media: item.media,
-    label: "Prints / Independent studies",
-    title: item.garmentType,
-    description: "An independent study in repeat, colour, surface and garment-scale image making.",
-    href: "/work/independent-print-archive",
-  } satisfies VisualArchiveItem));
+const koroshiArtworkItems = koroshiLocalArtworkMedia.map((media, index) => ({
+  id: `koroshi-artwork-${index + 1}`,
+  media,
+  label: "Koroshi / Original artwork",
+  title: media.alt.replace(/^Koroshi \/ /, ""),
+  description: "Production artwork retained from the original local collection files.",
+} satisfies VisualArchiveItem));
 
-const brandPrintItems = mediaInventory
-  .filter((item) => item.brand !== "Independent" && (
-    item.creativeDiscipline.toLowerCase().includes("textile print")
-    || item.category.includes("Fashion Graphics")
-  ))
-  .map((item) => ({
-    id: `brand-print-${item.id.toLowerCase()}`,
-    media: item.media,
-    label: `${item.brand} / ${item.division}`,
-    title: item.garmentType,
-    description: item.brand === "Koroshi"
-      ? "A Koroshi record where graphic, print and garment context are developed together."
-      : undefined,
-  } satisfies VisualArchiveItem));
+const fashionPrintItems = fashionPrintsBehanceMedia.map((media, index) => ({
+  id: `fashion-print-${index + 1}`,
+  media,
+  label: "Artworks / Fashion prints",
+  title: "Fashion print study",
+  description: "Print, colour and surface developed for fashion application.",
+} satisfies VisualArchiveItem));
 
-export const printVisualArchiveItems = uniqueByMedia(interleave(independentPrintItems, brandPrintItems));
+const rapportPrintItems = rapportPrintsBehanceMedia.map((media, index) => ({
+  id: `rapport-print-${index + 1}`,
+  media,
+  label: "Artworks / Rapport prints",
+  title: "Rapport fashion print",
+  description: "A repeat study built for rhythm, scale and garment movement.",
+} satisfies VisualArchiveItem));
+
+export const artworkVisualArchiveItems = uniqueByMedia(interleave(
+  koroshiArtworkItems,
+  fashionPrintItems,
+  rapportPrintItems,
+));
+
+// Retained export for the former /work/prints route.
+export const printVisualArchiveItems = artworkVisualArchiveItems;
 
 export const allVisualArchiveItems = uniqueByMedia(interleave(
   koroshiVisualArchiveItems,
   desigualVisualArchiveItems,
-  printVisualArchiveItems,
+  artworkVisualArchiveItems,
 ));
