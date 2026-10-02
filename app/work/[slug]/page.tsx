@@ -31,7 +31,7 @@ function legacyContext(slug: string, title: string) {
   }
   if (slug === "fashion-prints" || slug === "rapport-fashion-prints") {
     return {
-      breadcrumbs: [{ label: "Home", href: "/" }, { label: "Archive", href: "/#archive" }, { label: "Independent Print Archive", href: "/work/independent-print-archive" }, { label: title }],
+      breadcrumbs: [{ label: "Home", href: "/" }, { label: "Archive", href: "/archive" }, { label: "Independent Print Archive", href: "/work/independent-print-archive" }, { label: title }],
       parentHref: "/work/independent-print-archive",
       parentLabel: "Explore Independent Print Archive",
     };
