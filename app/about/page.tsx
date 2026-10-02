@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { AboutContent } from "../../components/about-content";
 import { SiteHeader } from "../../components/site-header";
 
-const title = "About | Francesc Serrat";
+const title = "Bio | Francesc Serrat";
 const description = "Francesc Serrat is a Barcelona-based Fashion Designer and Senior Fashion Graphic Designer with approximately 16 years of fashion-industry experience.";
 
 export const metadata: Metadata = {

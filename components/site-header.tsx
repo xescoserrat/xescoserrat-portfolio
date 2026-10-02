@@ -4,11 +4,11 @@ import Link from "next/link";
 import { useState } from "react";
 
 const navigation = [
-  ["Home", "/"],
-  ["Portfolio", "/#portfolio"],
   ["Desigual", "/work/desigual"],
   ["Koroshi", "/work/koroshi"],
-  ["Contact", "mailto:xescoserrat@gmail.com"],
+  ["Prints", "/work/prints"],
+  ["Bio", "/about"],
+  ["Contact", "/contact"],
 ] as const;
 
 function NavigationLinks({ onNavigate }: { onNavigate?: () => void }) {
@@ -20,7 +20,7 @@ export function SiteHeader() {
 
   return (
     <header className="site-header" aria-label="Site header">
-      <Link className="wordmark" href="/" aria-label="Xesco Serrat, home">XS</Link>
+      <Link className="wordmark" href="/" aria-label="Francesc Serrat, home">Home</Link>
       <nav className="site-nav site-nav--desktop" aria-label="Primary navigation">
         <NavigationLinks />
       </nav>
