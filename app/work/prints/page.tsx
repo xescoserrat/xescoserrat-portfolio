@@ -1,11 +1,11 @@
 import { SiteHeader } from "../../../components/site-header";
 import { Breadcrumbs } from "../../../components/breadcrumbs";
-import { MediaGallery } from "../../../components/media-gallery";
-import { printsArchiveMedia } from "../../../content/public-archives";
+import Link from "next/link";
+import { desigualPrintsArchiveMedia } from "../../../content/public-archives";
 
 export const metadata = {
   title: "Prints — Francesc Serrat",
-  description: "The complete public Behance image archive for Fashion Prints and Rapport Fashion Prints.",
+  description: "Fashion print archives for Desigual and Koroshi by Francesc Serrat.",
 };
 
 export default function PrintsPage() {
@@ -17,9 +17,26 @@ export default function PrintsPage() {
         <header className="collection-heading">
           <p className="eyebrow">Prints / Repeat / Surface</p>
           <h1>Prints</h1>
-          <p>Fashion Prints and Rapport Fashion Prints presented together as one complete surface archive.</p>
+          <p>Two independent print archives: Desigual surface work and Koroshi artworks.</p>
         </header>
-        <MediaGallery className="archive-gallery" media={printsArchiveMedia} title="Prints" priority />
+        <nav className="prints-division-list" aria-label="Print archives">
+          <Link className="prints-division" href="/work/prints/desigual">
+            <span className="prints-division-index">01</span>
+            <span className="prints-division-title">Prints Desigual</span>
+            <span className="prints-division-description">
+              Fashion Prints and Rapport Fashion Prints — {desigualPrintsArchiveMedia.length} artworks.
+            </span>
+            <span className="prints-division-arrow" aria-hidden="true">↗</span>
+          </Link>
+          <Link className="prints-division" href="/work/prints/koroshi">
+            <span className="prints-division-index">02</span>
+            <span className="prints-division-title">Prints Koroshi</span>
+            <span className="prints-division-description">
+              A dedicated archive for original Koroshi print artworks.
+            </span>
+            <span className="prints-division-arrow" aria-hidden="true">↗</span>
+          </Link>
+        </nav>
       </main>
     </>
   );

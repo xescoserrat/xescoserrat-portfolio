@@ -19,4 +19,7 @@ function interleave(...groups: MediaAsset[][]) {
 
 // Full public Behance image sets, cached locally and kept as temporary sources.
 export const desigualArchiveMedia = interleave(desigualManBehanceMedia, desigualWomanBehanceMedia);
-export const printsArchiveMedia = interleave(fashionPrintsBehanceMedia, rapportPrintsBehanceMedia);
+// Every print currently in the portfolio originates from the Desigual Behance
+// projects. Keeping this name explicit makes the parallel Koroshi archive safe
+// to populate later without moving or relabelling existing work.
+export const desigualPrintsArchiveMedia = interleave(fashionPrintsBehanceMedia, rapportPrintsBehanceMedia);
