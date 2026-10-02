@@ -67,7 +67,10 @@ export function MediaGallery({ className, media, title, priority = false }: Prop
               <span aria-hidden="true">←</span>
             </button>
           ) : null}
-          <img className={`lightbox-image ${activeMedia.aspect}`} src={activeMedia.src} alt={activeMedia.alt || title} />
+          <div className="lightbox-content">
+            <img className={`lightbox-image ${activeMedia.aspect}`} src={activeMedia.src} alt={activeMedia.alt || title} />
+            {activeMedia.caption ? <p className="lightbox-caption">{activeMedia.caption}</p> : null}
+          </div>
           {media.length > 1 ? (
             <button
               className="lightbox-control lightbox-next"

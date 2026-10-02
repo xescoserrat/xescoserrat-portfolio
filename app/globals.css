@@ -32,3 +32,48 @@ main .product-gallery img.media-frame.media-frame--contain{display:block;width:1
 @media(min-width:701px) and (max-width:1000px){.catalogue-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.product-navigation{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.world-card--2{width:100%;margin-left:0}.world-card-logo{min-height:16rem;padding:3rem}.catalogue-product-open{opacity:1;transform:none}.catalogue-category-hero,.product-hero{padding-top:7rem}.koroshi-season-entry{padding-left:0}.catalogue-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:2.5rem 1rem;padding-bottom:6rem}.catalogue-product-copy h2{font-size:1.15rem}.catalogue-product-copy span{font-size:.57rem}.product-heading{align-items:start;display:grid;gap:1.2rem}.product-gallery{grid-template-columns:1fr}.product-gallery .media-trigger:first-child:only-child{grid-column:auto}.product-specification{grid-template-columns:1fr}.product-navigation{grid-template-columns:1fr;gap:1.3rem}}
 @media(prefers-reduced-motion:no-preference){.archive-intro h1,.stream-heading h2,.stream-item,.archive-heading h2,.archive-discipline,.process h2,.about h2,.case-hero h1,.case-introduction h2,.case-process h2,.case-outro{animation:enter .8s both;animation-timeline:view();animation-range:entry 0% entry 30%}.archive-intro h1{animation-timeline:auto;animation-delay:.1s}.stream-item{animation-range:entry 0% entry 18%}@keyframes enter{from{opacity:0;transform:translateY(1.1rem)}to{opacity:1;transform:translateY(0)}}}
+/* Collection archive: complete garment views with generous white space. */
+.collection-page { max-width: 1500px; margin: auto; padding: 36px 5vw 100px; }
+.collection-heading { padding: 48px 0 40px; max-width: 850px; }
+.collection-heading h1 { font-size: clamp(48px, 7vw, 100px); line-height: 1.05; margin: 14px 0 20px; }
+.collection-heading > p:last-child { font-size: 18px; line-height: 1.6; max-width: 680px; }
+.season-cards { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 30px; }
+.season-card { color: inherit; text-decoration: none; }
+.season-cover { background: #fff; aspect-ratio: 1 / 1.1; display: flex; align-items: center; padding: 18px; border: 1px solid #e5e5e5; }
+.season-cover img { width: 100%; height: 100%; object-fit: contain; }
+.season-card h2 { display:flex; justify-content:space-between; font-size:32px; margin:20px 0 8px; }
+.season-card p { font-size:16px; margin:8px 0; }
+.season-nav { display:flex; gap:24px; padding: 0 0 30px; flex-wrap:wrap; }
+.season-nav a { padding:8px 0; font-size:16px; color:inherit; text-decoration:none; border-bottom:2px solid transparent; }
+.season-nav a[aria-current] { border-bottom-color:currentColor; }
+.design-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:38px 24px; }
+.design-card { color:inherit; text-decoration:none; }
+.design-card > div { aspect-ratio: 1 / 1; background:#fff; padding:12px; border:1px solid #e5e5e5; }
+.design-card img { width:100%; height:100%; object-fit:contain; }
+.design-card h2 { display:flex; justify-content:space-between; font-size:18px; margin:14px 0 6px; }
+.design-card p { font-size:14px; margin:0; }
+.design-image { margin:0 0 48px; background:#fff; }
+.design-image img { display:block; width:100%; height:auto; max-height:1400px; object-fit:contain; }
+.design-image figcaption { padding:18px 0; font-size:16px; background:var(--background,#fff); }
+@media(max-width:760px){.season-cards{grid-template-columns:1fr;gap:38px}.season-cover{aspect-ratio:1.3}.design-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 14px}.collection-page{padding:20px 5vw 60px}.collection-heading{padding-top:30px}.design-card>div{padding:4px}}
+@media(max-width:390px){.design-grid{grid-template-columns:1fr}}
+
+:root{--paper:#fff;--ink:#111;--muted:#666;--line:#d8d8d8;--acid:#e9e9e9}
+.archive-intro{background:#fff!important;border-bottom:1px solid #111;min-height:65svh}
+.archive-intro:before,.archive-intro:after{display:none}
+.brand-logo--desigual{width:100%;max-width:36rem;transform:scale(1.2)}
+.world-card-logo{overflow:hidden}
+.portfolio-worlds{padding-bottom:7rem}
+.brand-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;padding:0 5vw 80px;align-items:start}
+.brand-gallery .media-frame{width:100%;height:auto;object-fit:contain;max-height:none;background:#fff}
+.brand-gallery .media-trigger:nth-child(odd){margin-top:0}
+@media(max-width:700px){.brand-gallery{grid-template-columns:1fr}.brand-logo--desigual{transform:scale(1.12)}}
+
+.division-cards{grid-template-columns:repeat(2,minmax(0,1fr))}.division-cards .season-cover{aspect-ratio:4/5;padding:0}.division-cards img{object-fit:contain}.season-cards .season-cover{aspect-ratio:4/5;padding:0}.brand-gallery img.media-frame{background:#fff}.collection-page{padding-top:7rem}@media(max-width:700px){.division-cards{grid-template-columns:1fr}}
+
+/* Direct portfolio entrance and complete-image archive rhythm. */
+.home-screen{height:100svh;overflow:hidden;background:#fff}.home-panel{display:grid;grid-template-columns:minmax(18rem,1fr) minmax(19rem,.88fr);min-height:100%;align-items:center;gap:clamp(2rem,7vw,9rem);padding:clamp(6rem,12vw,10rem) var(--pad) var(--pad)}.home-intro{max-width:31rem}.home-intro h1{max-width:11ch;margin:1rem 0 1.35rem;font-size:clamp(2.45rem,4.8vw,5.4rem);font-weight:800;letter-spacing:-.09em;line-height:.84}.home-intro>p:last-child{max-width:26rem;margin:0;font-size:clamp(.85rem,1.2vw,1.05rem);line-height:1.4}.home-worlds{display:grid;border-top:1px solid var(--ink);align-content:center}.home-world{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:1.25rem;min-height:clamp(5.6rem,9vw,8.2rem);border-bottom:1px solid var(--ink);padding:.8rem 0;transition:opacity .16s ease}.home-world:hover,.home-world:focus-visible{opacity:.55}.home-world>span{font-size:clamp(2.05rem,3.55vw,4rem);font-weight:700;letter-spacing:-.085em;line-height:.85}.home-world--koroshi>span{font-size:clamp(2.22rem,3.84vw,4.32rem);letter-spacing:.09em;text-transform:uppercase}.home-world--prints>span{font-family:"Playfair Display",serif;font-size:clamp(2.42rem,4.18vw,4.7rem);font-weight:600}.home-world small{font:500 .58rem/1.3 "DM Mono",monospace;letter-spacing:.08em;text-align:right;text-transform:uppercase}
+
+.archive-gallery{--archive-image-height:clamp(11rem,19vw,17rem);display:flex;flex-wrap:wrap;align-items:flex-start;gap:clamp(.7rem,1.25vw,1.15rem);padding:0 0 clamp(4rem,9vw,8rem)}.archive-gallery .media-trigger{display:block;flex:0 0 auto;width:auto;max-width:100%;height:var(--archive-image-height);background:#fff}.archive-gallery .media-frame{display:block;width:auto!important;max-width:min(100%,42rem);height:100%!important;max-height:none!important;aspect-ratio:auto!important;object-fit:contain!important;object-position:center;background:#fff}.archive-gallery .media-trigger:hover .media-frame,.archive-gallery .media-trigger:focus-visible .media-frame{transform:none}.archive-gallery .media-trigger>span{background:#111;color:#fff}.lightbox-content{display:grid;justify-items:center;gap:1rem;max-width:100%;max-height:100%}.lightbox-caption{max-width:min(90vw,45rem);margin:0;text-align:center;font:500 .65rem/1.4 "DM Mono",monospace;letter-spacing:.06em;text-transform:uppercase}
+
+@media(max-width:700px){.home-panel{grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:1.5rem;padding-top:6.5rem;padding-bottom:1.3rem}.home-intro{max-width:23rem}.home-intro h1{font-size:clamp(2rem,8.8vw,3.2rem);line-height:.87}.home-worlds{align-content:end}.home-world{min-height:clamp(4.4rem,15vw,5.5rem);padding:.65rem 0}.home-world>span{font-size:clamp(1.65rem,8vw,2.4rem)}.home-world small{font-size:.5rem}.archive-gallery{--archive-image-height:clamp(8.5rem,40vw,12rem);gap:.7rem}.archive-gallery .media-frame{max-width:100%}}

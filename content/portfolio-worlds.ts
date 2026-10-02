@@ -136,7 +136,7 @@ export const portfolioWorlds: PortfolioWorld[] = [
   {
     slug: "koroshi",
     title: "Koroshi",
-    description: "Current menswear work for Spring–Summer 2026 across Fashion Design, Fashion Graphic Design, garment development, prints, accessories and production follow-up.",
+    description: "Menswear fashion design, original graphics and textile prints across outerwear, tops, accessories and swimwear.",
     cover: koroshiSs26Categories[0].cover,
     href: "/work/koroshi",
     categories: koroshiCategories,

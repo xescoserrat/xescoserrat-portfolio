@@ -10,6 +10,7 @@ export type MediaProvenance = {
 export type MediaAsset = {
   src: string;
   alt: string;
+  caption?: string;
   aspect: "portrait" | "landscape" | "square";
   width?: number;
   height?: number;

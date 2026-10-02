@@ -4,10 +4,11 @@ import Link from "next/link";
 import { useState } from "react";
 
 const navigation = [
-  ["Selected Work", "/#work"],
-  ["Archive", "/#archive"],
-  ["About", "/#about"],
-  ["Contact", "/#contact"],
+  ["Home", "/"],
+  ["Portfolio", "/#portfolio"],
+  ["Desigual", "/work/desigual"],
+  ["Koroshi", "/work/koroshi"],
+  ["Contact", "mailto:xescoserrat@gmail.com"],
 ] as const;
 
 function NavigationLinks({ onNavigate }: { onNavigate?: () => void }) {

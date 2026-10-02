@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+const path='app/page.tsx'; let home=fs.readFileSync(path,'utf8');
+home=home.replace('import { MediaFrame } from "../components/media-frame";\n','').replace('import { mediaInventory } from "../content/media-inventory";\n','').replace('import { koroshiSs26Categories } from "../content/koroshi-ss26";\n','');
+home=home.slice(0,home.indexOf('const koroshiStream'))+home.slice(home.indexOf('export default function Home'));
+home=home.slice(0,home.indexOf('        <section className="visual-stream"'))+'      </main>\n    </>\n  );\n}\n';
+home=home.replace('className="portfolio-worlds"','className="portfolio-worlds" id="portfolio"');
+fs.writeFileSync(path,home);
+let css=fs.readFileSync('app/globals.css','utf8');
+css+='\n:root{--paper:#fff;--ink:#111;--muted:#666;--line:#d8d8d8;--acid:#e9e9e9}\n.archive-intro{background:#fff!important;border-bottom:1px solid #111;min-height:65svh}\n.archive-intro:before,.archive-intro:after{display:none}\n.brand-logo--desigual{width:100%;max-width:36rem;transform:scale(1.2)}\n.world-card-logo{overflow:hidden}\n.portfolio-worlds{padding-bottom:7rem}\n.brand-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;padding:0 5vw 80px;align-items:start}\n.brand-gallery .media-frame{width:100%;height:auto;object-fit:contain;max-height:none;background:#fff}\n.brand-gallery .media-trigger:nth-child(odd){margin-top:0}\n@media(max-width:700px){.brand-gallery{grid-template-columns:1fr}.brand-logo--desigual{transform:scale(1.12)}}\n';
+fs.writeFileSync('app/globals.css',css);
