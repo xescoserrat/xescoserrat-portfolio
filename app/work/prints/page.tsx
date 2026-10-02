@@ -2,6 +2,7 @@ import { SiteHeader } from "../../../components/site-header";
 import { Breadcrumbs } from "../../../components/breadcrumbs";
 import Link from "next/link";
 import { desigualPrintsArchiveMedia } from "../../../content/public-archives";
+import { koroshiPrintsArchiveMedia } from "../../../content/koroshi-print-media";
 
 export const metadata = {
   title: "Prints — Francesc Serrat",
@@ -32,7 +33,7 @@ export default function PrintsPage() {
             <span className="prints-division-index">02</span>
             <span className="prints-division-title">Prints Koroshi</span>
             <span className="prints-division-description">
-              A dedicated archive for original Koroshi print artworks.
+              Original Koroshi print artworks, labels and graphic studies — {koroshiPrintsArchiveMedia.length} pieces.
             </span>
             <span className="prints-division-arrow" aria-hidden="true">↗</span>
           </Link>

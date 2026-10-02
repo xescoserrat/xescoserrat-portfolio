@@ -19,13 +19,17 @@ export default function Home() {
               <span>Desigual</span>
               <small>Man + Woman</small>
             </Link>
+            <Link className="home-world home-world--prints-desigual" href="/work/prints/desigual">
+              <span>Prints Desigual</span>
+              <small>Fashion Prints + Rapport</small>
+            </Link>
             <Link className="home-world home-world--koroshi" href="/work/koroshi">
               <span>Koroshi</span>
               <small>SS26 + AW26–27</small>
             </Link>
-            <Link className="home-world home-world--prints" href="/work/prints">
-              <span>Prints</span>
-              <small>Fashion Prints + Rapport</small>
+            <Link className="home-world home-world--prints-koroshi" href="/work/prints/koroshi">
+              <span>Prints Koroshi</span>
+              <small>Original artworks</small>
             </Link>
           </nav>
         </section>
